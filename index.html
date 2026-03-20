@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kinderplanung 2026</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kinderplanung">
+<meta name="theme-color" content="#4AAD6A">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234AAD6A'/><text y='.9em' font-size='72' x='50%' text-anchor='middle'>👨‍👩‍👧‍👦</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -86,6 +91,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 }
 .current-banner.isabel { background: var(--isabel-mid); }
 .current-banner-label { opacity: 0.8; font-weight: 600; font-size: 11px; }
+.current-banner-countdown { margin-left: auto; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 800; white-space: nowrap; }
 .current-banner-date { font-size: 14px; letter-spacing: -0.2px; }
 
 /* Vertical name on card left */
@@ -206,6 +212,23 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 .acc-who.familie { background: var(--familie-light); color: var(--familie); }
 
 .cal-view { display: none; }
+
+/* Day detail modal */
+.day-modal-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;display:flex;align-items:flex-end;justify-content:center; }
+.day-modal { background:var(--surface);border-radius:var(--radius) var(--radius) 0 0;padding:20px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow-lg); }
+.day-modal-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:14px; }
+.day-modal-title { font-family:Nunito,sans-serif;font-size:17px;font-weight:900;color:var(--text); }
+.day-modal-close { background:var(--warm);border:2px solid var(--border);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center; }
+.day-modal-who { display:inline-block;font-size:11px;font-weight:800;padding:3px 12px;border-radius:20px;margin-bottom:14px;font-family:Nunito,sans-serif; }
+.day-modal-who.sebastian { background:var(--sebastian-light);color:var(--sebastian); }
+.day-modal-who.isabel { background:var(--isabel-light);color:var(--isabel); }
+.day-modal-empty { font-size:13px;color:var(--text3);font-style:italic;padding:10px 0; }
+.day-modal-item { display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border); }
+.day-modal-item:last-child { border-bottom:none; }
+.day-modal-item-icon { font-size:16px;flex-shrink:0;width:22px;text-align:center; }
+.day-modal-item-time { font-size:11px;font-weight:700;color:var(--text3);min-width:42px;font-family:Nunito,sans-serif; }
+.day-modal-item-title { font-size:13px;font-weight:600;color:var(--text);flex:1; }
+
 .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .cal-nav-btn { width: 40px; height: 40px; background: var(--surface); border: 2px solid var(--border); border-radius: 50%; cursor: pointer; color: var(--text2); font-size: 18px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); transition: all 0.15s; }
 .cal-nav-btn:hover { border-color: var(--sebastian-mid); }
@@ -576,7 +599,11 @@ function renderList(){
     const ferien=currentBlock.ferien?(FERIEN_ICON[currentBlock.ferien]+' '):'';
     banner.className='current-banner'+(currentBlock.wer==='isabel'?' isabel':'');
     banner.style.display='flex';
-    banner.innerHTML=`<span class="current-banner-label">Aktuell bei</span><span class="current-banner-date">${ferien}${name} &nbsp;·&nbsp; ${fmt(currentBlock.von)} → ${fmt(currentBlock.bis)}</span>`;
+    const bisDate=dFA(currentBlock.bis);
+    const diffMs=bisDate-now;
+    const diffDays=Math.ceil(diffMs/(1000*60*60*24));
+    const countdownTxt=diffDays===1?'noch 1 Tag':diffDays<=7?`noch ${diffDays} Tage`:'';
+    banner.innerHTML=`<span class="current-banner-label">Aktuell bei</span><span class="current-banner-date">${ferien}${name} &nbsp;·&nbsp; ${fmt(currentBlock.von)} → ${fmt(currentBlock.bis)}</span>${countdownTxt?`<span class="current-banner-countdown">${countdownTxt}</span>`:''}`;
     banner.onclick=()=>{ const c=document.getElementById('current-block'); if(c) c.scrollIntoView({behavior:'smooth',block:'center'}); };
     banner.style.cursor='pointer';
     banner.title='Zur aktuellen Woche springen';
@@ -712,7 +739,7 @@ function renderCal(){
   for(let day=1;day<=dim;day++){
     const key=d2s(calYear,calMonth,day);
     const info=dayMap[key];const ts=TM[key]||[];
-    const el=document.createElement('div');let cls='day';
+    const el=document.createElement('div');let cls='day';const captDay=day,captM=calMonth,captY=calYear;
     if(info){
       const show=filter==='all'||info.wer===filter||(info.trans&&(info.fromWer===filter||info.toWer===filter));
       if(show){if(info.trans){cls+=' split';if(info.fromWer==='isabel')cls+=' i2s';}else cls+=' all-'+info.wer;}
@@ -725,13 +752,62 @@ function renderCal(){
       if(show&&info.ferien){const ev=document.createElement('div');ev.className='day-event ferien';ev.textContent=(FERIEN_ICON[info.ferien]||'')+' '+(FERIEN_LABEL[info.ferien]||'');ew.appendChild(ev);}
     }
     ts.forEach(t=>{const ev=document.createElement('div');ev.className='day-event '+(t.who==='familie'?'familie':t.who==='both'?'both':t.who);ev.textContent=(t.time?t.time+' ':'')+t.title;ew.appendChild(ev);});
-    el.appendChild(ew);grid.appendChild(el);
+    el.appendChild(ew);
+    if(!el.className.includes('empty')){
+      el.style.cursor='pointer';
+      el.onclick=()=>showDayModal(d2s(captY,captM,captDay),captDay,captM,captY);
+    }
+    grid.appendChild(el);
   }
 }
 
 renderChangelog();
 renderList();
 setTimeout(()=>{const c=document.getElementById('current-block');if(c)c.scrollIntoView({behavior:'instant',block:'start'});},50);
+
+
+// ── ICS EXPORT ──
+function generateICS(){
+  const lines=[];
+  const ts=()=>new Date().toISOString().replace(/[-:.]/g,'').slice(0,15)+'Z';
+  const fmtD=d=>d[0]+String(d[1]).padStart(2,'0')+String(d[2]).padStart(2,'0');
+  const uid=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
+
+  lines.push('BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kinderplanung 2026//DE','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Kinderplanung 2026');
+
+  // Blocks
+  blocks.forEach(b=>{
+    const icon=b.ferien?(Object.assign({oster:'🐰',pfingst:'🌸',sommer:'☀️',herbst:'🍂',winter:'🌲'})[b.ferien]+' '):'';
+    const wer=b.wer==='sebastian'?'Sebastian':'Isabel';
+    lines.push('BEGIN:VEVENT','UID:'+uid(),'DTSTAMP:'+ts(),
+      'DTSTART;VALUE=DATE:'+fmtD(b.von),'DTEND;VALUE=DATE:'+fmtD(b.bis),
+      'SUMMARY:'+icon+'Kinder bei '+wer,'END:VEVENT');
+  });
+
+  // Termine
+  Object.entries(TM).forEach(([key,evts])=>{
+    const [y,m,d]=[key.slice(0,4),key.slice(5,7),key.slice(8,10)];
+    evts.forEach(t=>{
+      if(t.type==='recurring')return; // skip — added separately
+      lines.push('BEGIN:VEVENT','UID:'+uid(),'DTSTAMP:'+ts());
+      if(t.time){
+        const [h,min]=t.time.split(':');
+        const startDt=y+m+d+'T'+h+min+'00';
+        const endH=String(parseInt(h)+1).padStart(2,'0');
+        lines.push('DTSTART;TZID=Europe/Berlin:'+startDt,'DTEND;TZID=Europe/Berlin:'+y+m+d+'T'+endH+min+'00');
+      } else {
+        const nextD=new Date(parseInt(y),parseInt(m)-1,parseInt(d)+1);
+        lines.push('DTSTART;VALUE=DATE:'+y+m+d,'DTEND;VALUE=DATE:'+nextD.getFullYear()+String(nextD.getMonth()+1).padStart(2,'0')+String(nextD.getDate()).padStart(2,'0'));
+      }
+      lines.push('SUMMARY:'+t.title,'END:VEVENT');
+    });
+  });
+
+  lines.push('END:VCALENDAR');
+  const blob=new Blob([lines.join('\r\n')],{type:'text/calendar'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='Kinderplanung_2026.ics';a.click();
+}
 
 // ── AUSWERTUNG ──
 function calcDays(){
@@ -807,30 +883,54 @@ function renderAuswertung(){
   const pctS=((totalS/total)*100).toFixed(1);
   const pctI=((totalI/total)*100).toFixed(1);
 
-  // Summary card
+  // Summary card with pie chart
   const hdr=document.createElement('div');
   hdr.style.cssText='background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);';
+
+  // SVG Pie
+  const angS=(totalS/total)*360;
+  function polarToXY(cx,cy,r,angleDeg){
+    const a=(angleDeg-90)*Math.PI/180;
+    return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
+  }
+  function pieSlice(cx,cy,r,startAngle,endAngle,color){
+    const s=polarToXY(cx,cy,r,startAngle);
+    const e=polarToXY(cx,cy,r,endAngle);
+    const large=endAngle-startAngle>180?1:0;
+    return `<path d="M${cx},${cy} L${s.x},${s.y} A${r},${r} 0 ${large},1 ${e.x},${e.y} Z" fill="${color}"/>`;
+  }
+  const cx=80,cy=80,r=68;
+  const pieSVG=`<svg width="160" height="160" viewBox="0 0 160 160">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--warm)"/>
+    ${angS>0&&angS<360?pieSlice(cx,cy,r,0,angS,'#4AAD6A'):''}
+    ${angS===0?'':(angS>=360?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#4AAD6A"/>`:'') }
+    ${angS>0&&angS<360?pieSlice(cx,cy,r,angS,360,'#4B80F0'):`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#4B80F0"/>`}
+    ${angS>0&&angS<360?pieSlice(cx,cy,r,0,angS,'#4AAD6A'):''}
+    <circle cx="${cx}" cy="${cy}" r="38" fill="var(--surface)"/>
+    <text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="11" font-weight="800" fill="var(--text)" font-family="Nunito,sans-serif">2026</text>
+    <text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="10" fill="var(--text3)" font-family="Nunito,sans-serif">${total.toFixed(0)} T</text>
+  </svg>`;
+
   hdr.innerHTML=`
-    <div style="font-family:Nunito,sans-serif;font-size:15px;font-weight:900;color:var(--text);margin-bottom:14px;">Tage 2026 — Gesamt</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-      <div style="background:var(--sebastian-pale);border:2px solid var(--sebastian-light);border-radius:12px;padding:14px;text-align:center;">
-        <div style="font-size:10px;font-weight:800;color:var(--sebastian);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Sebastian</div>
-        <div style="font-family:Nunito,sans-serif;font-size:38px;font-weight:900;color:var(--sebastian);line-height:1;">${totalS.toFixed(1)}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:5px;">Tage &nbsp;·&nbsp; ${pctS}%</div>
+    <div style="font-family:Nunito,sans-serif;font-size:15px;font-weight:900;color:var(--text);margin-bottom:16px;">Tage 2026 — Gesamt</div>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div style="flex-shrink:0;">${pieSVG}</div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+        <div style="background:var(--sebastian-pale);border:2px solid var(--sebastian-light);border-radius:12px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:800;color:var(--sebastian);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Sebastian</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span style="font-family:Nunito,sans-serif;font-size:32px;font-weight:900;color:var(--sebastian);line-height:1;">${totalS.toFixed(1)}</span>
+            <span style="font-size:12px;color:var(--text3);">${pctS}%</span>
+          </div>
+        </div>
+        <div style="background:var(--isabel-pale);border:2px solid var(--isabel-light);border-radius:12px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:800;color:var(--isabel);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Isabel</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span style="font-family:Nunito,sans-serif;font-size:32px;font-weight:900;color:var(--isabel);line-height:1;">${totalI.toFixed(1)}</span>
+            <span style="font-size:12px;color:var(--text3);">${pctI}%</span>
+          </div>
+        </div>
       </div>
-      <div style="background:var(--isabel-pale);border:2px solid var(--isabel-light);border-radius:12px;padding:14px;text-align:center;">
-        <div style="font-size:10px;font-weight:800;color:var(--isabel);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Isabel</div>
-        <div style="font-family:Nunito,sans-serif;font-size:38px;font-weight:900;color:var(--isabel);line-height:1;">${totalI.toFixed(1)}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:5px;">Tage &nbsp;·&nbsp; ${pctI}%</div>
-      </div>
-    </div>
-    <div style="background:var(--warm);border-radius:8px;height:12px;overflow:hidden;display:flex;">
-      <div style="background:var(--sebastian-mid);height:100%;width:${pctS}%;transition:width 0.4s;"></div>
-      <div style="background:var(--isabel-mid);height:100%;flex:1;"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--text3);font-weight:700;">
-      <span style="color:var(--sebastian);">Sebastian ${pctS}%</span>
-      <span style="color:var(--isabel);">Isabel ${pctI}%</span>
     </div>`;
   con.appendChild(hdr);
 
@@ -874,8 +974,67 @@ function renderAuswertung(){
       <div style="color:var(--text3);font-size:11px;margin-top:4px;">Halbe Tage werden als 0,5 gezählt und in der Summe addiert.</div>
     </div>`;
   con.appendChild(erkl);
+
+  // ICS Export button
+  const exportBtn=document.createElement('button');
+  exportBtn.onclick=generateICS;
+  exportBtn.style.cssText='display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:16px;padding:13px;background:var(--sebastian-mid);color:#fff;border:none;border-radius:var(--radius);font-family:Nunito,sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);';
+  exportBtn.innerHTML='📅 Kalender exportieren (.ics)';
+  con.appendChild(exportBtn);
 }
 
+
+
+// ── DAY MODAL ──
+function showDayModal(dateStr, dayNum, month, year){
+  const key=dateStr;
+  const info=dayMap[key];
+  const evts=TM[key]||[];
+  const days=['So','Mo','Di','Mi','Do','Fr','Sa'];
+  const months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const d=new Date(year,month-1,dayNum);
+
+  const overlay=document.createElement('div');overlay.className='day-modal-overlay';
+  overlay.onclick=(e)=>{if(e.target===overlay)overlay.remove();};
+
+  const modal=document.createElement('div');modal.className='day-modal';
+
+  const hdr=document.createElement('div');hdr.className='day-modal-header';
+  const title=document.createElement('div');title.className='day-modal-title';
+  title.textContent=days[d.getDay()]+', '+dayNum+'. '+months[month-1]+' '+year;
+  const close=document.createElement('button');close.className='day-modal-close';close.textContent='✕';
+  close.onclick=()=>overlay.remove();
+  hdr.appendChild(title);hdr.appendChild(close);modal.appendChild(hdr);
+
+  if(info){
+    const who=document.createElement('div');
+    who.className='day-modal-who '+(info.trans?(info.fromWer||info.wer):info.wer);
+    const wName=info.trans?`${info.fromWer==='sebastian'?'Sebastian':'Isabel'} → ${info.toWer==='sebastian'?'Sebastian':'Isabel'}`:(info.wer==='sebastian'?'Bei Sebastian':'Bei Isabel');
+    who.textContent=wName+(info.ferien?' · '+(Object.assign({oster:'Osterferien',pfingst:'Pfingstferien',sommer:'Sommerferien',herbst:'Herbstferien',winter:'Winterferien'})[info.ferien]||''):'');
+    modal.appendChild(who);
+  }
+
+  if(evts.length===0){
+    const em=document.createElement('div');em.className='day-modal-empty';em.textContent='Keine Termine';modal.appendChild(em);
+  } else {
+    function getIcon(t){
+      if(t.type==='recurring')return '🔁';
+      if(t.type==='comment')return '💬';
+      if(t.schoolOf)return '🏫';
+      if(t.who==='familie')return '👨‍👩‍👧‍👦';
+      if(t.title&&t.title.includes('🎂'))return '🎂';
+      return '📌';
+    }
+    [...evts].sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99')).forEach(t=>{
+      const item=document.createElement('div');item.className='day-modal-item';
+      const ico=document.createElement('div');ico.className='day-modal-item-icon';ico.textContent=getIcon(t);
+      const time=document.createElement('div');time.className='day-modal-item-time';time.textContent=t.time||'';
+      const ttl=document.createElement('div');ttl.className='day-modal-item-title';ttl.textContent=t.title;
+      item.appendChild(ico);item.appendChild(time);item.appendChild(ttl);modal.appendChild(item);
+    });
+  }
+  overlay.appendChild(modal);document.body.appendChild(overlay);
+}
 
 // ── STUNDENPLÄNE ──
 const stundenplanRosalie = {
