@@ -150,11 +150,11 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 .entry-who { font-size: 14px; font-weight: 800; font-family: 'Nunito', sans-serif; }
 .entry-who.sebastian { color: var(--sebastian); }
 .entry-who.isabel { color: var(--isabel); }
-.entry-note { font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 1px; }
+.entry-note { font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 2px; }
 .entry-note-empty { font-style: italic; opacity: 0.45; }
 .person-box.party { background: #FFF8E1; border-color: #FFD54F; }
 .person-box.party .person-box-name { color: #F57F17; }
-.entry-date { font-size: 17px; color: var(--text2); font-weight: 800; font-family: 'Nunito', sans-serif; margin-top: 2px; }
+.entry-date { font-size: 17px; color: var(--text2); font-weight: 800; font-family: 'Nunito', sans-serif; }
 
 /* Ferien icon — top right corner */
 .card-ferien-icon { font-size: 32px; line-height: 1; flex-shrink: 0; padding: 2px 10px 2px 4px; align-self: center; }
@@ -164,12 +164,12 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 
 /* Person card boxes */
 .person-box {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
   flex-shrink: 0;
-  border-radius: 10px;
-  padding: 6px 8px 5px;
+  border-radius: 6px;
+  padding: 3px 5px 2px;
   border: 1.5px solid transparent;
-  min-width: 68px;
+  min-width: 40px;
 }
 .person-box.rosalie { background: var(--rosalie-light); border-color: var(--rosalie-mid); }
 .person-box.julius { background: var(--julius-light); border-color: var(--julius-mid); }
@@ -178,15 +178,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 .person-box.kommentar { background: #FFF9EB; border-color: #F3C96B; }
 .person-box.kommentar .person-box-name { color: #B45309; }
 
-.person-box-name { font-size: 9px; font-weight: 900; font-family: 'Nunito', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+.person-box-name { font-size: 7px; font-weight: 900; font-family: 'Nunito', sans-serif; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; }
 .person-box.rosalie .person-box-name { color: var(--rosalie); }
 .person-box.julius .person-box-name { color: var(--julius); }
 .person-box.familie .person-box-name { color: var(--familie); }
 .person-box.inactive .person-box-name { color: var(--text3); }
 
-.person-box-icons { display: flex; gap: 3px; align-items: center; }
+.person-box-icons { display: flex; gap: 2px; align-items: center; }
 
-.bp { display: flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 800; font-family: 'Nunito', sans-serif; padding: 2px 5px; border-radius: 20px; border: 1.5px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.6); color: inherit; white-space: nowrap; }
+.bp { display: flex; align-items: center; gap: 1px; font-size: 8px; font-weight: 800; font-family: 'Nunito', sans-serif; padding: 1px 3px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.6); color: inherit; white-space: nowrap; }
 .bp.zero { opacity: 0.4; background: rgba(255,255,255,0.3); }
 
 .chevron-wrap { margin-left: auto; padding-right: 4px; flex-shrink: 0; }
@@ -196,15 +196,16 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 .entry-accordion { display: none; border-top: 1px solid var(--border); padding: 10px 16px 12px; }
 .entry-accordion.open { display: block; }
 .acc-sec { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 6px 0 4px; font-family: 'Nunito', sans-serif; }
-.acc-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.acc-item { display: flex; align-items: center; gap: 0; padding: 6px 0; border-bottom: 1px solid var(--border); }
 .acc-item:last-child { border-bottom: none; }
-.acc-bar { width: 3px; height: 26px; border-radius: 2px; flex-shrink: 0; }
+.acc-bar { width: 3px; height: 26px; border-radius: 2px; flex-shrink: 0; margin-right: 8px; }
 .acc-bar.julius { background: var(--julius); }
 .acc-bar.rosalie { background: var(--rosalie); }
 .acc-bar.both { background: var(--text3); }
 .acc-bar.familie { background: var(--familie); }
-.acc-time { font-size: 12px; font-weight: 700; color: var(--text3); min-width: 48px; font-family: 'Nunito', sans-serif; }
-.acc-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+.acc-date { font-size: 12px; font-weight: 700; color: var(--text3); width: 44px; flex-shrink: 0; font-family: 'Nunito', sans-serif; }
+.acc-time { font-size: 12px; font-weight: 700; color: var(--text3); width: 42px; flex-shrink: 0; font-family: 'Nunito', sans-serif; }
+.acc-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; padding-left: 6px; }
 .acc-who { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; font-family: 'Nunito', sans-serif; }
 .acc-who.julius { background: var(--julius-light); color: var(--julius); }
 .acc-who.rosalie { background: var(--rosalie-light); color: var(--rosalie); }
@@ -281,12 +282,11 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
   <!-- Row 2: Tabs + Filters inline -->
   <div class="topbar-row2">
     <div class="tabs-inline">
-      <button class="tab active" onclick="setView('list',event)">📋 Liste</button>
-      <button class="tab" onclick="setView('stundenplan',event)">📚 Stundenpläne</button>
+      <button class="tab active" onclick="setView('list',event)">📋 Planung</button>
+      <button class="tab" onclick="setView('stundenplan',event)">📚 Schule</button>
+      <button class="tab" onclick="setView('geburtstage',event)">🎂 Geburtstage</button>
       <button class="tab" id="todo-tab" onclick="setView('todo',event)">✅ ToDo</button>
-      <button class="tab" onclick="setView('cal',event)">📅 Kalender</button>
-      <button class="tab" onclick="setView('auswertung',event)">📊 Auswertung</button>
-      <button class="tab" onclick="setView('historie',event)">📝 Historie</button>
+      <button class="tab" onclick="setView('analyse',event)">📊 Analyse</button>
     </div>
     <div class="filters-inline">
       <button class="filter-btn active-all" onclick="setFilter('all')">Alle</button>
@@ -312,14 +312,16 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
     <div class="cal-dow-row" id="cal-dows"></div>
     <div class="cal-grid" id="cal-grid"></div>
   </div>
-  <div id="auswertung-view" style="display:none"></div>
-  <div id="historie-view" style="display:none"></div>
+  <div id="analyse-view" style="display:none"></div>
   <div id="stundenplan-view" style="display:none"></div>
+  <div id="geburtstage-view" style="display:none"></div>
   <div id="todo-view" style="display:none"></div>
 </div>
 
 <script>
 const changelog=[
+  {date:'20.03.2026',text:'11 Familiengeburtstage eingetragen (Sebastian, Thomas, Mathias, Franz-Georg, Isabel, Atlas, Livia, Daniel, Dilek, Jonna, Laura)'},
+  {date:'20.03.2026',text:'Isabel 11.01. 10:00 → 16.01. eingetragen'},
   {date:'20.03.2026',text:'Radfahrwoche Rosalie Mo 23.03. und Di 24.03. 08:00 eingetragen'},
   {date:'20.03.2026',text:'Block 24.03. 18:00: Kinder zurück zu Isabel (statt 25.03.)'},
   {date:'20.03.2026',text:'31.03. kein Tennis und kein Turnen (Notiz eingetragen)'},
@@ -349,11 +351,18 @@ const changelog=[
   {date:'19.03.2026',text:'Turnen Rosalie jeden Dienstag 16:30 bis 19.07. eingetragen'},
 ];
 
+const FREE_DAYS=new Set(['2026-01-01','2026-02-16','2026-02-17','2026-03-30','2026-03-31','2026-04-01','2026-04-02','2026-04-03','2026-04-04','2026-04-05','2026-04-06','2026-04-07','2026-04-08','2026-04-09','2026-04-10','2026-04-11','2026-05-01','2026-05-14','2026-05-15','2026-05-25','2026-05-26','2026-06-04','2026-06-05','2026-07-20','2026-07-21','2026-07-22','2026-07-23','2026-07-24','2026-07-25','2026-07-26','2026-07-27','2026-07-28','2026-07-29','2026-07-30','2026-07-31','2026-08-01','2026-08-02','2026-08-03','2026-08-04','2026-08-05','2026-08-06','2026-08-07','2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16','2026-08-17','2026-08-18','2026-08-19','2026-08-20','2026-08-21','2026-08-22','2026-08-23','2026-08-24','2026-08-25','2026-08-26','2026-08-27','2026-08-28','2026-08-29','2026-08-30','2026-08-31','2026-09-01','2026-10-03','2026-10-17','2026-10-18','2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-25','2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30','2026-10-31','2026-11-01','2026-12-23','2026-12-24','2026-12-25','2026-12-26','2026-12-27','2026-12-28','2026-12-29','2026-12-30','2026-12-31','2027-01-01','2027-01-02','2027-01-03','2027-01-04','2027-01-05','2027-01-06']);
+function isNonSchoolDay(dateObj){
+  const dow=dateObj.getDay();
+  if(dow===0||dow===6) return true; // weekend
+  return FREE_DAYS.has(d2s(dateObj.getFullYear(),dateObj.getMonth()+1,dateObj.getDate()));
+}
 const FERIEN_ICON={oster:'🐰',pfingst:'🌸',sommer:'☀️',herbst:'🍂',winter:'🌲'};
 const FERIEN_LABEL={oster:'Osterferien (30.03–11.04)',pfingst:'Pfingsten (26.05)',sommer:'Sommerferien (20.07–01.09)',herbst:'Herbstferien (17.10–31.10)',winter:'Winterferien (23.12–06.01)'};
 
 const blocks=[
-  {von:[2026,1,16],bis:[2026,1,23],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,1,2],bis:[2026,1,11],wer:'sebastian',note:'Fr 18:00 → So 10:00',ferien:null},
+  {von:[2026,1,11],bis:[2026,1,23],wer:'isabel',note:'So 10:00 → Fr 08:00',ferien:null},
   {von:[2026,1,23],bis:[2026,1,28],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
   {von:[2026,1,28],bis:[2026,2,6],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
   {von:[2026,2,6],bis:[2026,2,11],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
@@ -456,9 +465,24 @@ const TR=[
   {date:[2026,3,14],time:'14:00',title:'Zirkusaufführung Rosalie',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {date:[2026,2,14],time:null,title:'Rosi Kindergeburtstag-Feier (Schatzsuche)',who:'rosalie',type:'single',schoolOf:null},
   {date:[2026,2,10],time:'15:00',title:'Julius Zahnspange (neue Spange oben)',who:'julius',type:'single',schoolOf:null},
-  // Geburtstage
-  {date:[2026,1,29],time:null,title:'🎂 Rosalie Geburtstag (7)',who:'rosalie',type:'single',schoolOf:null},
-  {date:[2026,4,30],time:null,title:'🎂 Julius Geburtstag (12)',who:'julius',type:'single',schoolOf:null},
+  // Geburtstage Kinder
+  {date:[2026,1,29],time:null,title:'🎂 Rosalie Geburtstag (7)',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,30],time:null,title:'🎂 Julius Geburtstag (12)',who:'geburtstag',type:'single',schoolOf:null},
+  // Geburtstage Familie
+  {date:[2026,1,4],time:null,title:'🎂 Atlas Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,25],time:null,title:'🎂 Franz-Georg Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,24],time:null,title:'🎂 Oliver Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,3,12],time:null,title:'🎂 Hannes Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,2,4],time:null,title:'🎂 Emil Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,6,9],time:null,title:'🎂 Laura Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,8,5],time:null,title:'🎂 Daniel Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,3],time:null,title:'🎂 Sebastian Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,10],time:null,title:'🎂 Dilek Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,12],time:null,title:'🎂 Jonna Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,11,3],time:null,title:'🎂 Thomas Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,11,18],time:null,title:'🎂 Isabel Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,12,15],time:null,title:'🎂 Mathias Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,12,25],time:null,title:'🎂 Livia Hangebrauck',who:'geburtstag',type:'single',schoolOf:null},
   // GSG Termine
   {date:[2026,4,20],time:'19:00',title:'Elternabend Julius',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,2,17],time:null,title:'Kein Unterricht — Distanzlernen (Kinder zu Hause)',who:'julius',type:'single',schoolOf:'julius'},
@@ -505,7 +529,8 @@ function mkPill(icon,count){
 }
 
 function mkPersonBox(name,person,rC,sC,schC,famC){
-  const hasAny = rC+sC+schC+famC > 0;
+  const termC=rC+sC;
+  const hasAny = termC+schC+famC > 0;
   const box=document.createElement('div');
   box.className='person-box '+(hasAny?person:'inactive');
   const nm=document.createElement('div');nm.className='person-box-name';nm.textContent=name;box.appendChild(nm);
@@ -513,8 +538,7 @@ function mkPersonBox(name,person,rC,sC,schC,famC){
   if(person==='familie'){
     ic.appendChild(mkPill('👨‍👩‍👧‍👦',famC));
   } else {
-    ic.appendChild(mkPill('🔁',rC));
-    ic.appendChild(mkPill('📌',sC));
+    ic.appendChild(mkPill('📅',termC));
     ic.appendChild(mkPill('🏫',schC));
   }
   box.appendChild(ic);
@@ -524,7 +548,7 @@ function mkPersonBox(name,person,rC,sC,schC,famC){
 function renderChangelog(){ /* moved to Historie tab */ }
 
 function renderHistorie(){
-  const con=document.getElementById('historie-view');
+  const con=document.getElementById('analyse-view-historie');
   con.innerHTML='';
   con.style.padding='20px';
 
@@ -564,7 +588,7 @@ function setFilter(f){
     else if(f==='sebastian'&&t==='sebastian')b.className='filter-btn active-sebastian';
     else if(f==='isabel'&&t==='isabel')b.className='filter-btn active-isabel';
   });
-  if(view==='list')renderList();else renderCal();
+  if(view==='list')renderList();
 }
 
 function setView(v,e){
@@ -572,15 +596,13 @@ function setView(v,e){
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
   e.target.classList.add('active');
   document.getElementById('list-view').style.display=v==='list'?'':'none';
-  document.getElementById('cal-view').style.display=v==='cal'?'block':'none';
-  document.getElementById('auswertung-view').style.display=v==='auswertung'?'block':'none';
-  document.getElementById('historie-view').style.display=v==='historie'?'block':'none';
+  document.getElementById('analyse-view').style.display=v==='analyse'?'block':'none';
   document.getElementById('stundenplan-view').style.display=v==='stundenplan'?'block':'none';
+  document.getElementById('geburtstage-view').style.display=v==='geburtstage'?'block':'none';
   document.getElementById('todo-view').style.display=v==='todo'?'block':'none';
-  if(v==='cal')renderCal();
-  if(v==='auswertung')renderAuswertung();
-  if(v==='historie')renderHistorie();
+  if(v==='analyse')renderAnalyse();
   if(v==='stundenplan')renderstundenplan();
+  if(v==='geburtstage')renderGeburtstage();
   if(v==='todo')renderTodo();
 }
 
@@ -647,21 +669,63 @@ function renderList(){
       // Content wrap
       const contentWrap=document.createElement('div');contentWrap.className='card-content-wrap';
 
-      // Ferien icon placeholder (always reserve space or show icon)
-      const fi=document.createElement('div');fi.className='card-ferien-icon';
-      if(b.ferien){fi.textContent=FERIEN_ICON[b.ferien]||'';fi.title=FERIEN_LABEL[b.ferien]||'';}
+      // Ferien icon — top right of card
+      if(b.ferien){
+        const fi=document.createElement('div');
+        fi.style.cssText='position:absolute;top:8px;right:10px;font-size:20px;line-height:1;';
+        fi.textContent=FERIEN_ICON[b.ferien]||'';
+        fi.title=FERIEN_LABEL[b.ferien]||'';
+        top.appendChild(fi);
+      }
 
-      // Row 1: info only
+      // Row 1: [day badge] [date / note]
       const row1=document.createElement('div');row1.className='card-row1';
-      const body=document.createElement('div');body.className='card-info';
-      const n=document.createElement('div');n.className='entry-note'+(b.note?'':' entry-note-empty');n.textContent=b.note||'Keine Notiz';body.appendChild(n);
+      row1.style.cssText='display:flex;align-items:stretch;gap:8px;';
+
+      // Day count badge
+      const dayBadge=document.createElement('div');
+      dayBadge.style.cssText='font-family:Nunito,sans-serif;font-size:20px;font-weight:900;min-width:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--warm);color:var(--text3);border:1.5px solid var(--border);padding:0 6px;';
+      dayBadge.textContent='…';
+      b._dayBadgeEl=dayBadge;
+      row1.appendChild(dayBadge);
+
+      // Date + note stacked
+      const body=document.createElement('div');body.className='card-info';body.style.cssText='display:flex;flex-direction:column;justify-content:center;min-width:0;';
       const de=document.createElement('div');de.className='entry-date';de.textContent=fmt(b.von)+' → '+fmt(b.bis);body.appendChild(de);
+      const n=document.createElement('div');n.className='entry-note'+(b.note?'':' entry-note-empty');n.textContent=b.note||'Keine Notiz';body.appendChild(n);
       row1.appendChild(body);
-      if(b.ferien)row1.appendChild(fi);
       contentWrap.appendChild(row1);
 
       // Row 2: person boxes
       const row2=document.createElement('div');row2.className='card-row2';
+      // Pre-compute block day totals for badge
+      (()=>{
+        const bi=blocks.indexOf(b);
+        let ts=0,ti=0;
+        // Use string keys to avoid timezone issues
+        const vonKey=d2s(b.von[0],b.von[1],b.von[2]);
+        const bisKey=d2s(b.bis[0],b.bis[1],b.bis[2]);
+        let cc=dFA(b.von);
+        // Loop von (inclusive) through bis (inclusive)
+        // bis counts for whoever gets it per getDayScore
+        let safetyCount=0;
+        while(safetyCount<400){
+          safetyCount++;
+          const key=d2s(cc.getFullYear(),cc.getMonth()+1,cc.getDate());
+          const isFirst=key===vonKey;
+          const isLast=key===bisKey;
+          const score=getDayScore(cc,b,bi,isFirst,isLast);
+          ts+=score.s;ti+=score.i;
+          if(isLast)break;
+          cc=new Date(cc.getFullYear(),cc.getMonth(),cc.getDate()+1);
+        }
+        const val=b.wer==='sebastian'?ts:ti;
+        if(b._dayBadgeEl){
+          b._dayBadgeEl.textContent=val%1===0?val.toFixed(0):val.toFixed(1);
+          if(b.wer==='sebastian'){b._dayBadgeEl.style.background='var(--sebastian-pale)';b._dayBadgeEl.style.color='var(--sebastian)';b._dayBadgeEl.style.border='1.5px solid var(--sebastian-light)';}
+          else{b._dayBadgeEl.style.background='var(--isabel-pale)';b._dayBadgeEl.style.color='var(--isabel)';b._dayBadgeEl.style.border='1.5px solid var(--isabel-light)';}
+        }
+      })();
       const rR=bt.filter(t=>t.type==='recurring'&&t.who==='rosalie').length;
       const sR=bt.filter(t=>t.type==='single'&&!t.schoolOf&&t.type!=='comment'&&(t.who==='rosalie'||t.who==='both')).length;
       const schR=bt.filter(t=>t.schoolOf==='rosalie'||t.schoolOf==='both').length;
@@ -670,66 +734,119 @@ function renderList(){
       const schJ=bt.filter(t=>t.schoolOf==='julius'||t.schoolOf==='both').length;
       const fC=bt.filter(t=>t.who==='familie').length;
       const cC=bt.filter(t=>t.type==='comment').length;
-      const partyC=bt.filter(t=>t.title&&t.title.includes('🎂')).length;
+      const partyC=bt.filter(t=>t.who==='geburtstag').length;
 
-      // Notiz first (always shown, grayed if empty)
+      // Geburtstag badge — always shown first
+      const pb=document.createElement('div');
+      pb.className='person-box '+(partyC>0?'party':'inactive');
+      pb.innerHTML=`<div class="person-box-name">Geburtstag</div><div class="person-box-icons"><div class="bp${partyC>0?'':' zero'}">🎂<span>${partyC}</span></div></div>`;
+      row2.appendChild(pb);
+
+      // Notiz badge — always shown
       const nb=document.createElement('div');
       nb.className='person-box '+(cC>0?'kommentar':'inactive');
       nb.innerHTML=`<div class="person-box-name">Notiz</div><div class="person-box-icons"><div class="bp${cC>0?' af':' zero'}">💬<span>${cC}</span></div></div>`;
       row2.appendChild(nb);
 
-      // Party hat if birthdays in block
-      if(partyC>0){
-        const pb=document.createElement('div');
-        pb.className='person-box party';
-        pb.innerHTML=`<div class="person-box-name">Geburtstag</div><div class="person-box-icons"><div class="bp">🎉<span>${partyC}</span></div></div>`;
-        row2.appendChild(pb);
-      }
-
       row2.appendChild(mkPersonBox('Rosalie','rosalie',rR,sR,schR,0));
       row2.appendChild(mkPersonBox('Julius','julius',rJ,sJ,schJ,0));
       row2.appendChild(mkPersonBox('Familie','familie',0,0,0,fC));
 
-      if(bt.length>0){
-        const cw=document.createElement('div');cw.className='chevron-wrap';
-        const ch=document.createElement('span');ch.className='chevron';ch.id='chev-'+b.von.join('-');ch.textContent='▼';
-        cw.appendChild(ch);row2.appendChild(cw);
-      }
+      const cw=document.createElement('div');cw.className='chevron-wrap';
+      const ch=document.createElement('span');ch.className='chevron';ch.id='chev-'+b.von.join('-');ch.textContent='▼';
+      cw.appendChild(ch);row2.appendChild(cw);
       contentWrap.appendChild(row2);
       top.appendChild(contentWrap);
       card.appendChild(top);
 
-      // Accordion
-      if(bt.length>0){
+      // Accordion — always shown
+      {
         const acc=document.createElement('div');acc.className='entry-accordion';acc.id='acc-'+b.von.join('-');
+
+        // Day chips row
+        const DOW=['So','Mo','Di','Mi','Do','Fr','Sa'];
+        const chipsRow=document.createElement('div');
+        chipsRow.style.cssText='display:flex;gap:5px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--border);';
+
+        // Use unified getDayScore for chip colors
+        function chipScore(dayDate, blk, blkIdx){
+          const isFirst=dayDate.getTime()===dFA(blk.von).getTime();
+          const isLast=dayDate.getTime()===dFA(blk.bis).getTime();
+          return getDayScore(dayDate,blk,blkIdx,isFirst,isLast);
+        }
+
+        // Find block index
+        const blkIdx=blocks.indexOf(b);
+        let blockTotalS=0, blockTotalI=0;
+        const vonKey2=d2s(b.von[0],b.von[1],b.von[2]);
+        const bisKey2=d2s(b.bis[0],b.bis[1],b.bis[2]);
+        let cur=dFA(b.von);
+        let chipSafety=0;
+        while(chipSafety<400){
+          chipSafety++;
+          const chipKey=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
+          const sc=chipScore(cur,b,blkIdx);
+          const isBisDate=chipKey===bisKey2;
+          const isToday=cur.getFullYear()===now.getFullYear()&&cur.getMonth()===now.getMonth()&&cur.getDate()===now.getDate();
+          if(!isBisDate){blockTotalS+=sc.s;blockTotalI+=sc.i;}
+          const chip=document.createElement('div');
+          const isFreeDay=isNonSchoolDay(cur);
+          const freeBorder=isFreeDay?'#F59E0B':'';
+
+          // Determine background color
+          let bg,textColor;
+          if(sc.s===0&&sc.i===0){bg='var(--warm)';textColor='var(--text3)';}
+          else if(sc.s===1){bg='var(--sebastian-pale)';textColor='var(--sebastian)';}
+          else if(sc.i===1){bg='var(--isabel-pale)';textColor='var(--isabel)';}
+          else if(sc.s===0.5){bg='linear-gradient(135deg,var(--sebastian-pale) 50%,var(--isabel-pale) 50%)';textColor='var(--text)';}
+          else{bg='var(--warm)';textColor='var(--text3)';}
+          const chipBorder=isToday?'var(--sebastian-mid)':isFreeDay?'#F59E0B':'rgba(0,0,0,0.08)';
+
+          const borderWidth=isFreeDay?'2px':'1.5px';
+          chip.style.cssText=`flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 7px;border-radius:8px;border:${borderWidth} solid ${chipBorder};background:${bg};min-width:34px;box-sizing:border-box;${isToday?'box-shadow:0 0 0 2px var(--sebastian-mid);':''}`;
+
+          const dowEl=document.createElement('div');
+          dowEl.style.cssText=`font-family:Nunito,sans-serif;font-size:11px;font-weight:900;color:${textColor};`;
+          dowEl.textContent=DOW[cur.getDay()];
+          const dateEl=document.createElement('div');
+          dateEl.style.cssText='font-size:9px;color:var(--text3);font-weight:600;';
+          dateEl.textContent=String(cur.getDate()).padStart(2,'0')+'.'+String(cur.getMonth()+1).padStart(2,'0')+'.';
+          chip.appendChild(dowEl);chip.appendChild(dateEl);
+          chipsRow.appendChild(chip);
+          if(isBisDate)break;
+          cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+        }
+        acc.appendChild(chipsRow);
+
         // Sort all items by date
         bt.sort((a,b)=>{
           const da=a.month*100+a.day, db=b.month*100+b.day;
           return da-db;
         });
-        function getIcon(t){
-          if(t.type==='recurring') return '🔁';
-          if(t.type==='comment') return '💬';
-          if(t.schoolOf) return '🏫';
-          if(t.who==='familie') return '👨‍👩‍👧‍👦';
-          return '📌';
+        if(bt.length===0){
+          const em=document.createElement('div');
+          em.style.cssText='font-size:12px;color:var(--text3);font-style:italic;padding:6px 0;';
+          em.textContent='Keine Termine in diesem Zeitraum';
+          acc.appendChild(em);
         }
+
         bt.forEach(t=>{
           const item=document.createElement('div');item.className='acc-item';
-          const bar=document.createElement('div');bar.className='acc-bar '+(t.who==='familie'?'familie':t.who==='both'?'both':t.who==='comment'?'both':t.who);
-          const ico=document.createElement('div');ico.style.cssText='font-size:13px;flex-shrink:0;width:18px;text-align:center;';ico.textContent=getIcon(t);
-          const tm=document.createElement('div');tm.className='acc-time';tm.textContent=String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.'+(t.time?' '+t.time:'');
+          const bar=document.createElement('div');bar.className='acc-bar '+(t.who==='familie'?'familie':t.who==='geburtstag'?'familie':t.who==='both'?'both':t.who==='comment'?'both':t.who);
+          const dt=document.createElement('div');dt.className='acc-date';dt.textContent=String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.';
+          const tm=document.createElement('div');tm.className='acc-time';tm.textContent=t.time||'';
           const ttl=document.createElement('div');ttl.className='acc-title';ttl.textContent=t.title;
-          item.appendChild(bar);item.appendChild(ico);item.appendChild(tm);item.appendChild(ttl);
+          item.appendChild(bar);item.appendChild(dt);item.appendChild(tm);item.appendChild(ttl);
           acc.appendChild(item);
         });
         card.appendChild(acc);
-        card.onclick=()=>{
-          const a=document.getElementById('acc-'+b.von.join('-'));
-          const c=document.getElementById('chev-'+b.von.join('-'));
-          if(a){a.classList.toggle('open');if(c)c.classList.toggle('open');}
-        };
       }
+      card.onclick=()=>{
+        const a=document.getElementById('acc-'+b.von.join('-'));
+        const c=document.getElementById('chev-'+b.von.join('-'));
+        if(a){a.classList.toggle('open');if(c)c.classList.toggle('open');}
+      };
+      card.style.cursor='pointer';
       sec.appendChild(card);
     });
     con.appendChild(sec);
@@ -820,73 +937,106 @@ function generateICS(){
   a.download='Kinderplanung_2026.ics';a.click();
 }
 
+
+
+// ── UNIFIED DAY CALCULATION ──
+// Returns {s: float, i: float} for a given day within a block
+// dayDate: Date object
+// blk: block object
+// blkIdx: index in blocks array
+// isFirstDay: is this the von date of the block
+// isLastDay: is this the bis date of the block (= Übergabetag to next block)
+function getDayScore(dayDate, blk, blkIdx, isFirstDay, isLastDay){
+  const dow = dayDate.getDay(); // 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
+  const isSchoolDay = !isNonSchoolDay(dayDate);
+
+  // ── LAST DAY (Übergabetag to next block) ──
+  if(isLastDay && blkIdx < blocks.length-1){
+    const next = blocks[blkIdx+1];
+    // Extract explicit time from current block's note (end time)
+    const noteEnd = blk.note||'';
+    // Check if time is explicitly mentioned in note after the arrow
+    const afterArrow = noteEnd.includes('→') ? noteEnd.split('→')[1].trim() : '';
+    const timeMatch = afterArrow.match(/(\d{1,2}):(\d{2})/);
+    const hour = timeMatch ? parseInt(timeMatch[1]) : -1;
+
+    // School day rule: if weekday AND not in ferien AND no explicit time override
+    if(isSchoolDay && hour < 0){
+      // School day handover: full day for receiver
+      return next.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    }
+    // Explicit time or non-school day → time rule
+    if(hour < 0){
+      // No time known, ferien → full for current owner
+      return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    }
+    if(hour < 10) return next.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    if(hour >= 17) return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    return {s:0.5, i:0.5};
+  }
+
+  // ── FIRST DAY (von date — Übernahmetag from previous block) ──
+  if(isFirstDay && blkIdx > 0){
+    const prev = blocks[blkIdx-1];
+    // The transition time is defined by the PREVIOUS block's end
+    const notePrev = prev.note||'';
+    const afterArrow = notePrev.includes('→') ? notePrev.split('→')[1].trim() : '';
+    const timeMatch = afterArrow.match(/(\d{1,2}):(\d{2})/);
+    const hour = timeMatch ? parseInt(timeMatch[1]) : -1;
+
+    // School day rule
+    if(isSchoolDay && hour < 0){
+      return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    }
+    if(hour < 0) return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    if(hour < 10) return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    if(hour >= 17) return prev.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+    return {s:0.5, i:0.5};
+  }
+
+  // ── MIDDLE DAYS ──
+  return blk.wer==='sebastian' ? {s:1,i:0} : {s:0,i:1};
+}
+
 // ── AUSWERTUNG ──
 function calcDays(){
-  const dayScores={};
-  function getScore(k){if(!dayScores[k])dayScores[k]={s:0,i:0};return dayScores[k];}
+  const monthly={};
+  let totalS=0, totalI=0;
+  const counted={};
 
   blocks.forEach((b,idx)=>{
-    const von=dFA(b.von),bis=dFA(b.bis);
-    const isRegelSeb=b.note&&b.note.includes('Fr 13:00');
-    const isRegelIsa=b.note&&b.note.includes('Mi 13:30');
-    let cur=new Date(von);
-    while(cur<bis){
-      const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
-      const dow=cur.getDay();
-      const sc=getScore(key);
-      if(isRegelSeb&&b.wer==='sebastian'){
-        // Fr(5),Sa(6),So(0),Mo(1),Di(2)=full; Mi(3)=0 (Isabel holt ab)
-        if(dow===3){sc.s=0;sc.i=0;}
-        else{sc.s=1;sc.i=0;}
-      } else if(isRegelIsa&&b.wer==='isabel'){
-        // Mi(3),Do(4)=full for Isabel; Fr(5)=0 (Sebastian holt ab)
-        if(dow===5){sc.s=0;sc.i=0;}
-        else{sc.s=0;sc.i=1;}
-      } else {
-        if(b.wer==='sebastian'){sc.s=1;sc.i=0;}
-        else{sc.s=0;sc.i=1;}
+    const vonKey=d2s(b.von[0],b.von[1],b.von[2]);
+    const bisKey=d2s(b.bis[0],b.bis[1],b.bis[2]);
+    let cc=dFA(b.von);
+    let safety=0;
+    while(safety<400){
+      safety++;
+      const key=d2s(cc.getFullYear(),cc.getMonth()+1,cc.getDate());
+      const isFirst=key===vonKey;
+      const isLast=key===bisKey;
+      // Each day counted once: bis of block A = von of block B
+      // Count it as isLast of block A (skip as isFirst of block B)
+      if(isFirst && idx>0 && counted[key]){
+        if(isLast)break;
+        cc=new Date(cc.getFullYear(),cc.getMonth(),cc.getDate()+1);
+        continue;
       }
-      cur.setDate(cur.getDate()+1);
-    }
-    // Transition day
-    if(idx<blocks.length-1){
-      const next=blocks[idx+1];
-      const td=dFA(b.bis);
-      const tk=d2s(td.getFullYear(),td.getMonth()+1,td.getDate());
-      const sc=getScore(tk);
-      const note=(b.note||'')+(next.note||'');
-      let hour=-1;
-      if(note.includes('08:00'))hour=8;
-      else if(note.includes('13:00'))hour=13;
-      else if(note.includes('13:30'))hour=13;
-      else if(note.includes('14:00'))hour=14;
-      else if(note.includes('18:00'))hour=18;
-      else if(note.toLowerCase().includes('abends'))hour=20;
-      if(hour<0||hour>=17){
-        if(b.wer==='sebastian'){sc.s=1;sc.i=0;}else{sc.s=0;sc.i=1;}
-      } else if(hour<10){
-        if(next.wer==='sebastian'){sc.s=1;sc.i=0;}else{sc.s=0;sc.i=1;}
-      } else {
-        sc.s=0.5;sc.i=0.5;
-      }
+      const score=getDayScore(cc,b,idx,isFirst,isLast);
+      counted[key]=true;
+      const m=key.substring(0,7);
+      if(!monthly[m])monthly[m]={s:0,i:0};
+      monthly[m].s+=score.s; monthly[m].i+=score.i;
+      totalS+=score.s; totalI+=score.i;
+      if(isLast)break;
+      cc=new Date(cc.getFullYear(),cc.getMonth(),cc.getDate()+1);
     }
   });
 
-  let totalS=0,totalI=0;
-  const monthly={};
-  Object.entries(dayScores).forEach(([key,val])=>{
-    const m=key.substring(0,7);
-    if(!monthly[m])monthly[m]={s:0,i:0};
-    monthly[m].s+=val.s;
-    monthly[m].i+=val.i;
-    totalS+=val.s;
-    totalI+=val.i;
-  });
   return{totalS,totalI,monthly};
 }
 
 function renderAuswertung(){
-  const con=document.getElementById('auswertung-view');
+  const con=document.getElementById('analyse-view-auswertung');
   con.innerHTML='';
   con.style.padding='20px';
   const{totalS,totalI,monthly}=calcDays();
@@ -1335,15 +1485,7 @@ function updateTodoBadge(){
   const open=todos.filter(t=>!t.done).length;
   const tab=document.getElementById('todo-tab');
   if(!tab)return;
-  if(open>0){
-    tab.style.background='var(--rosalie-light)';
-    tab.style.color='var(--rosalie)';
-    tab.style.borderBottom='3px solid var(--rosalie)';
-  } else {
-    tab.style.background='';
-    tab.style.color='';
-    tab.style.borderBottom='';
-  }
+  // no color highlight
 }
 
 function renderTodo(){
@@ -1398,6 +1540,71 @@ function renderTodo(){
     con.appendChild(dt);
     done.forEach(t=>con.appendChild(mkCard(t)));
   }
+}
+
+
+// ── GEBURTSTAGE ──
+function renderGeburtstage(){
+  const con=document.getElementById('geburtstage-view');
+  con.innerHTML='';
+  con.style.padding='20px';
+
+  // Collect all birthdays from TR
+  const MN2=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const bdList=TR.filter(t=>t.date&&t.title&&t.title.includes('🎂')).map(t=>{
+    const d=new Date(t.date[0],t.date[1]-1,t.date[2]);
+    return {date:t.date, title:t.title.replace('🎂 ',''), day:t.date[2], month:t.date[1]};
+  }).sort((a,b)=>a.month!==b.month?a.month-b.month:a.day-b.day);
+
+  const today=new Date();
+  const todayKey=today.getMonth()*100+today.getDate();
+
+  // Group by month
+  let lastMonth=-1;
+  bdList.forEach(b=>{
+    if(b.month!==lastMonth){
+      const mh=document.createElement('div');
+      mh.style.cssText='font-family:Nunito,sans-serif;font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin:'+(lastMonth===-1?'0':'14px')+' 0 8px;';
+      mh.textContent=MN2[b.month-1];
+      con.appendChild(mh);
+      lastMonth=b.month;
+    }
+    const key=b.month*100+b.day;
+    const isPast=key<todayKey;
+    const isToday=key===todayKey;
+    const card=document.createElement('div');
+    card.style.cssText=`background:var(--surface);border:2px solid ${isToday?'var(--julius-mid)':isPast?'var(--border)':'var(--border)'};border-left:5px solid ${isToday?'var(--julius-mid)':isPast?'var(--border)':'var(--familie-mid)'};border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:6px;display:flex;align-items:center;gap:12px;opacity:${isPast?0.45:1};box-shadow:var(--shadow);`;
+    const ico=document.createElement('div');
+    ico.style.cssText='font-size:18px;flex-shrink:0;';
+    ico.textContent=isToday?'🎉':'🎂';
+    const dateDiv=document.createElement('div');
+    dateDiv.style.cssText='font-family:Nunito,sans-serif;font-size:13px;font-weight:900;color:var(--text3);min-width:42px;flex-shrink:0;';
+    dateDiv.textContent=String(b.day).padStart(2,'0')+'.'+String(b.month).padStart(2,'0')+'.';
+    const nameDiv=document.createElement('div');
+    nameDiv.style.cssText=`flex:1;font-size:13px;font-weight:700;color:var(--text);${isPast?'text-decoration:line-through;color:var(--text3);':''}`;
+    nameDiv.textContent=b.title;
+    card.appendChild(ico);card.appendChild(dateDiv);card.appendChild(nameDiv);
+    con.appendChild(card);
+  });
+}
+
+
+function renderAnalyse(){
+  const outer=document.getElementById('analyse-view');
+  outer.innerHTML='';
+
+  // Auswertung section
+  const ausDiv=document.createElement('div');ausDiv.id='analyse-view-auswertung';outer.appendChild(ausDiv);
+  renderAuswertung();
+
+  // Divider
+  const div=document.createElement('div');
+  div.style.cssText='border-top:2px solid var(--border);margin:8px 0;';
+  outer.appendChild(div);
+
+  // Historie section
+  const histDiv=document.createElement('div');histDiv.id='analyse-view-historie';outer.appendChild(histDiv);
+  renderHistorie();
 }
 
 </script>
