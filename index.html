@@ -320,7 +320,12 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 
 <script>
 const changelog=[
-  {date:'20.03.2026',text:'Julius Geburtstag 30.04. eingetragen'},
+  {date:'20.03.2026',text:'Radfahrwoche Rosalie Mo 23.03. und Di 24.03. 08:00 eingetragen'},
+  {date:'20.03.2026',text:'Block 24.03. 18:00: Kinder zurück zu Isabel (statt 25.03.)'},
+  {date:'20.03.2026',text:'31.03. kein Tennis und kein Turnen (Notiz eingetragen)'},
+  {date:'20.03.2026',text:'14.04. Notiz: Sebastian bringt zur Schule, Isabel holt ab'},
+  {date:'20.03.2026',text:'20.04. 19:00 Elternabend Julius eingetragen'},
+  {date:'20.03.2026',text:'30.05. 14:00 Julius Geburtstag feiern bei Oma Ostbüren'},
   {date:'20.03.2026',text:'Rosalie Geburtstag 29.01. eingetragen'},
   {date:'20.03.2026',text:'Distanzlernen Julius 17.02. eingetragen'},
   {date:'20.03.2026',text:'2. Elternsprechtag Julius 07.05. 14:00 eingetragen'},
@@ -359,8 +364,8 @@ const blocks=[
   {von:[2026,3,11],bis:[2026,3,14],wer:'isabel',note:'Mi 13:30 → Sa 14:00',ferien:null},
   {von:[2026,3,14],bis:[2026,3,15],wer:'sebastian',note:'Sa 14:00 → So 12:00',ferien:null},
   {von:[2026,3,15],bis:[2026,3,20],wer:'isabel',note:'So 12:00 → Fr 08:00',ferien:null},
-  {von:[2026,3,20],bis:[2026,3,25],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,3,25],bis:[2026,3,29],wer:'isabel',note:'Mi 13:30 → So 18:00',ferien:null},
+  {von:[2026,3,20],bis:[2026,3,24],wer:'sebastian',note:'Fr 13:00 → Di 18:00',ferien:null},
+  {von:[2026,3,24],bis:[2026,3,29],wer:'isabel',note:'Di 18:00 → So 18:00',ferien:null},
   {von:[2026,3,29],bis:[2026,4,6],wer:'sebastian',note:'So 18:00 → Mo 19:00',ferien:'oster'},
   {von:[2026,4,6],bis:[2026,4,9],wer:'isabel',note:'Mo 19:00 → Do 18:00',ferien:'oster'},
   {von:[2026,4,9],bis:[2026,4,15],wer:'sebastian',note:'Do 18:00 → Mi 08:00',ferien:'oster'},
@@ -407,6 +412,7 @@ const TR=[
   {date:[2026,3,17],time:'17:00',title:'Turnfest Rosalie',who:'rosalie',type:'single',schoolOf:null},
   {date:[2026,3,30],time:'11:00',title:'Zahnarzt Kamen',who:'both',type:'single',schoolOf:null},
   {date:[2026,4,10],time:null,title:'Efteling mit der Familie',who:'familie',type:'single',schoolOf:null},
+  {date:[2026,5,30],time:'14:00',title:'Julius Geburtstag feiern bei Oma (Ostbüren)',who:'familie',type:'single',schoolOf:null},
   {date:[2026,4,15],time:'18:00',title:'Elternstammtisch (China City)',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {date:[2026,4,18],time:'14:00',title:'Kinder zu Isabel',who:'both',type:'single',schoolOf:null},
   {date:[2026,4,29],time:'09:00',title:'Hr. Dehrenbach',who:'julius',type:'single',schoolOf:null},
@@ -418,6 +424,8 @@ const TR=[
   {dateRange:[[2026,3,9],[2026,3,14]],title:'Zirkuswoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {dateRange:[[2026,3,16],[2026,3,20]],title:'Fußgängerwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {date:[2026,3,21],time:'10:00',title:'Frühjahrsputz Königsborn',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,3,23],time:'08:00',title:'Radfahrwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,3,24],time:'08:00',title:'Radfahrwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {dateRange:[[2026,5,4],[2026,5,8]],title:'Elternsprechtagswoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
   // Julius-spezifisch
   {date:[2026,2,6],time:null,title:'Zeugnisausgabe Halbjahr',who:'julius',type:'single',schoolOf:'julius'},
@@ -428,6 +436,7 @@ const TR=[
   // Beide Kinder
   {date:[2026,3,27],time:null,title:'⛔ Letzter Schultag vor Osterferien',who:'both',type:'single',schoolOf:'both'},
   {date:[2026,4,14],time:null,title:'✅ Erster Schultag nach Osterferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,4,14],time:null,title:'Sebastian bringt zur Schule, Isabel holt ab',who:'both',type:'comment',schoolOf:null},
   {date:[2026,5,22],time:null,title:'⛔ Letzter Schultag vor Pfingsten',who:'both',type:'single',schoolOf:'both'},
   {date:[2026,5,27],time:null,title:'✅ Erster Schultag nach Pfingsten',who:'both',type:'single',schoolOf:'both'},
   {date:[2026,7,16],time:null,title:'📋 Zeugnisausgabe Rosalie',who:'rosalie',type:'single',schoolOf:'rosalie'},
@@ -438,6 +447,7 @@ const TR=[
   {date:[2026,12,22],time:null,title:'⛔ Letzter Schultag vor Winterferien',who:'both',type:'single',schoolOf:'both'},
   {date:[2027,1,7],time:null,title:'✅ Erster Schultag nach Winterferien',who:'both',type:'single',schoolOf:'both'},
   // Kommentare
+  {date:[2026,3,31],time:null,title:'Kein Tennis & kein Turnen heute',who:'both',type:'comment',schoolOf:null},
   {date:[2026,4,10],time:null,title:'Kinder bleiben bei Sebastian durch bis nach Efteling',who:'both',type:'comment',schoolOf:null},
   {date:[2026,6,20],time:'18:00',title:'Isabel: Fortbildung Bad Horn Meinberg (So+Mo)',who:'both',type:'comment',schoolOf:null},
   {date:[2026,6,21],time:null,title:'Isabel: Fortbildung Bad Horn Meinberg',who:'both',type:'comment',schoolOf:null},
@@ -450,6 +460,7 @@ const TR=[
   {date:[2026,1,29],time:null,title:'🎂 Rosalie Geburtstag (7)',who:'rosalie',type:'single',schoolOf:null},
   {date:[2026,4,30],time:null,title:'🎂 Julius Geburtstag (12)',who:'julius',type:'single',schoolOf:null},
   // GSG Termine
+  {date:[2026,4,20],time:'19:00',title:'Elternabend Julius',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,2,17],time:null,title:'Kein Unterricht — Distanzlernen (Kinder zu Hause)',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,5,7],time:'14:00',title:'2. Elternsprechtag Julius (14:00–19:00)',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,5,14],time:null,title:'Christi Himmelfahrt — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
