@@ -3,138 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julius' Kalender 2026</title>
+<title>Julius 2026</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Julius 2026">
-<meta name="theme-color" content="#F59E0B">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-title" content="Julius">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --julius: #D97706; --julius-mid: #F59E0B; --julius-light: #FEF3C7; --julius-pale: #FFFBEB;
-  --sebastian: #2D8C4E; --sebastian-mid: #4AAD6A; --sebastian-light: #E8F7EE; --sebastian-pale: #F3FBF6;
-  --isabel: #2563EB; --isabel-mid: #4B80F0; --isabel-light: #E8F0FE; --isabel-pale: #F0F5FF;
-  --rosalie: #DB2777; --rosalie-mid: #EC4899;
-  --familie: #7C3AED; --familie-mid: #8B5CF6; --familie-light: #EDE9FE;
-  --bg: #FAF8F5; --surface: #FFFFFF; --warm: #F5F1EB;
-  --text: #2D2926; --text2: #6B6560; --text3: #A89F96; --border: #E8E2D9;
-  --shadow: 0 2px 12px rgba(0,0,0,0.06); --shadow-lg: 0 4px 24px rgba(0,0,0,0.1);
-  --radius: 14px; --radius-sm: 10px;
-}
-[data-theme="dark"] {
-  --bg: #141210; --surface: #1E1B17; --warm: #252118;
-  --text: #FFFFFF; --text2: #E8E0D8; --text3: #7A7168; --border: #3D3630;
-  --shadow: 0 2px 12px rgba(0,0,0,0.4);
-  --julius-light: #2A1F08; --julius-pale: #1E1608;
-  --sebastian-pale: #152A1C; --sebastian-light: #1C3824;
-  --isabel-pale: #131B2E; --isabel-light: #182338;
-  --familie-light: #1E1230;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-/* Header */
-.header { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 2px solid var(--julius-mid); box-shadow: var(--shadow); padding: 12px 16px 10px; display: flex; align-items: center; gap: 10px; }
-.header-title { font-family: Nunito, sans-serif; font-size: 20px; font-weight: 900; color: var(--julius); flex: 1; }
-.header-sub { font-size: 12px; color: var(--text3); font-weight: 600; }
-.dark-btn { background: var(--warm); border: 2px solid var(--border); border-radius: 20px; padding: 4px 10px; cursor: pointer; font-size: 15px; }
-
-/* Banner */
-.banner { color: #fff; padding: 14px 16px; font-family: Nunito, sans-serif; display: flex; align-items: center; gap: 14px; }
-.banner.sebastian { background: linear-gradient(135deg, #2D8C4E, #4AAD6A); }
-.banner.isabel { background: linear-gradient(135deg, #2563EB, #4B80F0); }
-.banner-icon { font-size: 32px; flex-shrink: 0; }
-.banner-body { flex: 1; }
-.banner-wer { font-size: 13px; font-weight: 700; opacity: 0.85; margin-bottom: 2px; }
-.banner-countdown-big { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -0.5px; }
-.banner-dates { font-size: 11px; font-weight: 600; opacity: 0.75; margin-top: 3px; }
-
-/* Content */
-.content { padding: 16px; max-width: 640px; margin: 0 auto; }
-.month-title { font-family: Nunito, sans-serif; font-size: 16px; font-weight: 900; color: var(--text); margin: 20px 0 10px; display: flex; align-items: center; gap: 10px; }
-.month-title::after { content: ''; flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
-
-/* Block card */
-.block-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; position: relative; }
-.block-card.current { border-color: #E53935; box-shadow: 0 0 0 2px rgba(229,57,53,0.2), var(--shadow-lg); }
-.block-card.sebastian { border-left: 5px solid var(--sebastian-mid); }
-.block-card.isabel { border-left: 5px solid var(--isabel-mid); }
-.card-name-col { position: absolute; left: 0; top: 0; bottom: 0; width: 20px; display: flex; align-items: center; justify-content: center; }
-.card-name-vert { writing-mode: vertical-rl; transform: rotate(180deg); font-family: Nunito, sans-serif; font-size: 9px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sebastian-mid); }
-.card-name-vert.isabel { color: var(--isabel-mid); }
-.card-body { padding: 10px 10px 8px 28px; }
-.card-row1 { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.card-badge { font-family: Nunito, sans-serif; font-size: 18px; font-weight: 900; min-width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.card-badge.sebastian { background: var(--sebastian-pale); color: var(--sebastian); border: 1.5px solid var(--sebastian-light); }
-.card-badge.isabel { background: var(--isabel-pale); color: var(--isabel); border: 1.5px solid var(--isabel-light); }
-.card-info { flex: 1; min-width: 0; }
-.card-date { font-family: Nunito, sans-serif; font-size: 15px; font-weight: 800; color: var(--text2); }
-.card-note { font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 1px; }
-.ferien-icon { position: absolute; top: 7px; right: 9px; font-size: 18px; }
-.chevron { font-size: 10px; color: var(--text3); transition: transform 0.2s; margin-left: auto; padding-right: 6px; }
-.chevron.open { transform: rotate(180deg); }
-
-/* Accordion */
-.acc { display: none; border-top: 1px solid var(--border); padding: 8px 12px 10px 28px; }
-.acc.open { display: block; }
-
-/* Day chips */
-.chips-row { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
-.chip { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 3px 6px; border-radius: 6px; border: 1.5px solid var(--border); min-width: 32px; }
-.chip.seb { background: var(--sebastian-pale); border-color: var(--sebastian-light); }
-.chip.isa { background: var(--isabel-pale); border-color: var(--isabel-light); }
-.chip.half { background: linear-gradient(135deg, var(--sebastian-pale) 50%, var(--isabel-pale) 50%); }
-.chip.free-day { border-width: 2px; border-color: #F59E0B; }
-.chip.today { box-shadow: 0 0 0 2px var(--julius-mid); }
-.chip-dow { font-family: Nunito, sans-serif; font-size: 11px; font-weight: 900; color: var(--text); }
-.chip-date { font-size: 9px; color: var(--text3); font-weight: 600; }
-
-/* Events */
-.acc-empty { font-size: 12px; color: var(--text3); font-style: italic; }
-.acc-item { display: flex; align-items: center; gap: 0; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.acc-item:last-child { border-bottom: none; }
-.acc-bar { width: 3px; height: 24px; border-radius: 2px; flex-shrink: 0; margin-right: 8px; background: var(--julius-mid); }
-.acc-bar.rosalie { background: var(--rosalie-mid); }
-.acc-bar.both { background: var(--text3); }
-.acc-bar.familie { background: var(--familie-mid); }
-.acc-bar.geburtstag { background: var(--familie-mid); }
-.acc-date-col { font-size: 11px; font-weight: 700; color: var(--text3); width: 42px; flex-shrink: 0; font-family: Nunito, sans-serif; }
-.acc-time-col { font-size: 11px; font-weight: 700; color: var(--text3); width: 40px; flex-shrink: 0; font-family: Nunito, sans-serif; }
-.acc-title { font-size: 12px; font-weight: 600; color: var(--text); flex: 1; }
-
-/* Tags row */
-.tags-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 2px; }
-.tag { font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 10px; font-family: Nunito, sans-serif; }
-.tag.julius { background: var(--julius-light); color: var(--julius); }
-.tag.rosalie { background: var(--rosalie-mid); color: #fff; }
-.tag.both { background: var(--warm); color: var(--text2); }
-.tag.familie { background: var(--familie-light); color: var(--familie-mid); }
-.tag.school { background: var(--surface); border: 1px solid var(--border); color: var(--text3); }
+:root{--seb:#4AAD6A;--isa:#4B80F0;--bg:#FAF8F5;--sur:#fff;--warm:#F5F1EB;--txt:#2D2926;--txt2:#6B6560;--txt3:#A89F96;--brd:#E8E2D9;--shd:0 2px 12px rgba(0,0,0,.06);--r:14px;--rs:10px;}
+[data-theme=dark]{--bg:#141210;--sur:#1E1B17;--warm:#252118;--txt:#fff;--txt2:#E8E0D8;--txt3:#7A7168;--brd:#3D3630;--seb:#4AAD6A;--isa:#6B9FFF;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Nunito,sans-serif;background:var(--bg);color:var(--txt);}
+.hdr{background:var(--sur);border-bottom:2px solid var(--brd);padding:12px 16px;display:flex;align-items:center;position:sticky;top:0;z-index:20;}
+.hdr-title{font-size:20px;font-weight:900;flex:1;}
+.dark-btn{background:var(--warm);border:2px solid var(--brd);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:15px;}
+.cnt{padding:12px 16px;color:#fff;display:flex;align-items:center;gap:14px;font-family:Nunito,sans-serif;}
+.cnt-icon{font-size:36px;line-height:1;flex-shrink:0;}
+.cnt-days{font-size:28px;font-weight:900;line-height:1;}
+.cnt-sub{font-size:11px;font-weight:600;opacity:.8;margin-top:3px;}
+.content{padding:14px;max-width:640px;margin:0 auto;}
+.mth{font-size:16px;font-weight:900;margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.mth::after{content:"";flex:1;height:2px;background:var(--brd);border-radius:2px;}
+.card{background:var(--sur);border:2px solid var(--brd);border-radius:var(--r);margin-bottom:8px;cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shd);}
+.card.sebastian{border-left:5px solid var(--seb);}
+.card.isabel{border-left:5px solid var(--isa);}
+.card.now{box-shadow:0 0 0 2px #E53935,var(--shd);}
+.card-name{position:absolute;left:0;top:0;bottom:0;width:20px;display:flex;align-items:center;justify-content:center;}
+.card-name-v{writing-mode:vertical-rl;transform:rotate(180deg);font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;}
+.card-name-v.sebastian{color:var(--seb);}
+.card-name-v.isabel{color:var(--isa);}
+.card-body{padding:10px 10px 8px 26px;display:flex;align-items:center;gap:8px;}
+.badge{font-size:18px;font-weight:900;min-width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.badge.sebastian{background:#E8F7EE;color:#2D8C4E;border:1.5px solid #A8D5B8;}
+.badge.isabel{background:#E8F0FE;color:#2563EB;border:1.5px solid #A8C0F0;}
+.card-info{flex:1;min-width:0;}
+.card-date{font-size:15px;font-weight:800;color:var(--txt2);}
+.card-note{font-size:11px;color:var(--txt3);font-weight:600;margin-top:1px;}
+.ficon{position:absolute;top:7px;right:9px;font-size:18px;}
+.chev{font-size:10px;color:var(--txt3);transition:transform .2s;margin-left:4px;}
+.chev.open{transform:rotate(180deg);}
+.acc{display:none;border-top:1px solid var(--brd);padding:8px 10px 10px 26px;}
+.acc.open{display:block;}
+.chips{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--brd);}
+.chip{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 6px;border-radius:6px;border:1.5px solid var(--brd);min-width:32px;}
+.chip.s{background:#E8F7EE;border-color:#A8D5B8;}
+.chip.i{background:#E8F0FE;border-color:#A8C0F0;}
+.chip.half{background:linear-gradient(135deg,#E8F7EE 50%,#E8F0FE 50%);}
+.chip.free{border-color:#F59E0B;border-width:2px;}
+.chip.today{box-shadow:0 0 0 2px #F59E0B;}
+.chip-d{font-size:11px;font-weight:900;color:var(--txt);}
+.chip-dt{font-size:9px;color:var(--txt3);font-weight:600;}
+.evt-empty{font-size:12px;color:var(--txt3);font-style:italic;padding:2px 0;}
+.evt{display:flex;align-items:center;gap:0;padding:5px 0;border-bottom:1px solid var(--brd);}
+.evt:last-child{border-bottom:none;}
+.evt-bar{width:3px;height:22px;border-radius:2px;flex-shrink:0;margin-right:8px;background:#F59E0B;}
+.evt-bar.r{background:#EC4899;}
+.evt-bar.b{background:var(--txt3);}
+.evt-bar.f{background:#8B5CF6;}
+.evt-date{font-size:11px;font-weight:700;color:var(--txt3);width:40px;flex-shrink:0;}
+.evt-time{font-size:11px;font-weight:700;color:var(--txt3);width:38px;flex-shrink:0;}
+.evt-title{font-size:12px;font-weight:600;color:var(--txt);flex:1;}
 </style>
 </head>
 <body>
-<div class="header">
-  <div style="flex:1;">
-    <div class="header-title">Julius' Kalender</div>
-    <div class="header-sub">2026</div>
-  </div>
-  <button class="dark-btn" id="darkbtn" onclick="toggleDark()">🌙</button>
-</div>
-<div id="countdown-card" style="display:none;padding:12px 16px;font-family:Nunito,sans-serif;"></div>
-<div class="content" id="content"></div>
-
+<div class="hdr"><div class="hdr-title">Julius 2026</div><button class="dark-btn" id="dbtn" onclick="toggleDark()">&#127769;</button></div>
+<div id="cnt" class="cnt" style="background:#4AAD6A;display:none;"></div>
+<div class="content" id="main"></div>
 <script>
 const FREE_DAYS=new Set(['2026-01-01','2026-02-16','2026-02-17','2026-03-30','2026-03-31','2026-04-01','2026-04-02','2026-04-03','2026-04-04','2026-04-05','2026-04-06','2026-04-07','2026-04-08','2026-04-09','2026-04-10','2026-04-11','2026-05-01','2026-05-14','2026-05-15','2026-05-25','2026-05-26','2026-06-04','2026-06-05','2026-07-20','2026-07-21','2026-07-22','2026-07-23','2026-07-24','2026-07-25','2026-07-26','2026-07-27','2026-07-28','2026-07-29','2026-07-30','2026-07-31','2026-08-01','2026-08-02','2026-08-03','2026-08-04','2026-08-05','2026-08-06','2026-08-07','2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16','2026-08-17','2026-08-18','2026-08-19','2026-08-20','2026-08-21','2026-08-22','2026-08-23','2026-08-24','2026-08-25','2026-08-26','2026-08-27','2026-08-28','2026-08-29','2026-08-30','2026-08-31','2026-09-01','2026-10-03','2026-10-17','2026-10-18','2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-25','2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30','2026-10-31','2026-11-01','2026-12-23','2026-12-24','2026-12-25','2026-12-26','2026-12-27','2026-12-28','2026-12-29','2026-12-30','2026-12-31','2027-01-01','2027-01-02','2027-01-03','2027-01-04','2027-01-05','2027-01-06']);
-
-function isNonSchool(d){
-  const dow=d.getDay();
-  if(dow===0||dow===6)return true;
-  return FREE_DAYS.has(d2s(d.getFullYear(),d.getMonth()+1,d.getDate()));
-}
-
-function d2s(y,m,d){return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
+function d2s(y,m,d){return y+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0");}
 function dFA(a){return new Date(a[0],a[1]-1,a[2]);}
-function fmt(a){return String(a[2]).padStart(2,'0')+'.'+String(a[1]).padStart(2,'0')+'.';}
-
+function fmt(a){return String(a[2]).padStart(2,"0")+"."+String(a[1]).padStart(2,"0")+".";}
+function isNS(d){var w=d.getDay();if(w===0||w===6)return true;return FREE_DAYS.has(d2s(d.getFullYear(),d.getMonth()+1,d.getDate()));}
 const blocks=[
   {von:[2026,1,2],bis:[2026,1,11],wer:'sebastian',note:'Fr 18:00 → So 10:00',ferien:null},
   {von:[2026,1,11],bis:[2026,1,23],wer:'isabel',note:'So 10:00 → Fr 08:00',ferien:null},
@@ -191,7 +129,6 @@ const blocks=[
   {von:[2026,12,23],bis:[2026,12,30],wer:'sebastian',note:'Mi 13:00 → Mi 13:00',ferien:'winter'},
   {von:[2026,12,30],bis:[2027,1,6],wer:'isabel',note:'Mi 13:00 → Mi 13:00',ferien:'winter'},
 ];
-
 const TR=[
   {date:[2026,3,17],time:'17:00',title:'Turnfest Rosalie',who:'rosalie',type:'single',schoolOf:null},
   {date:[2026,3,30],time:'11:00',title:'Zahnarzt Kamen',who:'both',type:'single',schoolOf:null},
@@ -270,218 +207,174 @@ const TR=[
   {recurring:{dow:2,until:[2026,7,19]},time:'16:30',title:'Turnen Rosalie',who:'rosalie',type:'recurring',schoolOf:null},
 ];
 
-const FERIEN_ICON={oster:'🐰',pfingst:'🌸',sommer:'☀️',herbst:'🍂',winter:'🌲'};
-const MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-const DOW=['So','Mo','Di','Mi','Do','Fr','Sa'];
-const now=new Date();
+var FICON={oster:"&#x1F430;",pfingst:"&#x1F338;",sommer:"&#x2600;&#xFE0F;",herbst:"&#x1F342;",winter:"&#x1F332;"};
+var MN=["Januar","Februar","M\u00e4rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+var DOW=["So","Mo","Di","Mi","Do","Fr","Sa"];
+var now=new Date();
 
 // Build termine map
-const TM={};
+var TM={};
 function aT(k,t){if(!TM[k])TM[k]=[];TM[k].push(t);}
-TR.forEach(t=>{
+TR.forEach(function(t){
   if(t.date){aT(d2s(t.date[0],t.date[1],t.date[2]),{time:t.time,title:t.title,who:t.who,type:t.type,schoolOf:t.schoolOf||null,day:t.date[2],month:t.date[1]});}
-  else if(t.dateRange){let c=dFA(t.dateRange[0]),e=dFA(t.dateRange[1]);while(c<=e){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:null,title:t.title,who:t.who,type:t.type||'single',schoolOf:t.schoolOf||null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+1);}}
-  else if(t.recurring){const u=dFA(t.recurring.until);let c=t.recurring.from?dFA(t.recurring.from):new Date(2026,0,1);while(c.getDay()!==t.recurring.dow)c.setDate(c.getDate()+1);while(c<=u){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:t.time,title:t.title,who:t.who,type:'recurring',schoolOf:null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+7);}}
+  else if(t.dateRange){var c=dFA(t.dateRange[0]),e=dFA(t.dateRange[1]);while(c<=e){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:null,title:t.title,who:t.who,type:t.type||"single",schoolOf:t.schoolOf||null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+1);}}
+  else if(t.recurring){var u=dFA(t.recurring.until);var c=t.recurring.from?dFA(t.recurring.from):new Date(2026,0,1);while(c.getDay()!==t.recurring.dow)c.setDate(c.getDate()+1);while(c<=u){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:t.time,title:t.title,who:t.who,type:"recurring",schoolOf:null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+7);}}
 });
 
-// Filter: only Julius-relevant events
-function isJuliusEvent(t){
-  return t.who==='julius'||t.who==='both'||t.who==='familie'||t.who==='geburtstag'||(t.schoolOf==='julius'||t.schoolOf==='both');
+function isJulius(t){return t.who==="julius"||t.who==="both"||t.who==="familie"||t.who==="geburtstag"||(t.schoolOf==="julius"||t.schoolOf==="both");}
+
+function getScore(day,blk,idx,isF,isL){
+  var school=!isNS(day);
+  var inF=!!blk.ferien;
+  function parseH(note){if(!note||note.indexOf(">")<0)return -1;var a=note.split(">")[1].trim();var m=a.match(/(\d{1,2}):(\d{2})/);return m?parseInt(m[1]):-1;}
+  if(isL&&idx<blocks.length-1){
+    var nx=blocks[idx+1];var h=parseH(blk.note);
+    if(school&&!inF&&h<0)return nx.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h<0)return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h<10)return nx.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h>=17)return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    return {s:0.5,i:0.5};
+  }
+  if(isF&&idx>0){
+    var pv=blocks[idx-1];var h=parseH(pv.note);
+    if(school&&!inF&&h<0)return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h<0)return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h<10)return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    if(h>=17)return pv.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
+    return {s:0.5,i:0.5};
+  }
+  return blk.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
 }
 
-// getDayScore (simplified for display)
-function getDayScore(dayDate,blk,blkIdx,isFirst,isLast){
-  const isSchool=!isNonSchool(dayDate);
-  const inFerien=!!blk.ferien;
-  if(isLast&&blkIdx<blocks.length-1){
-    const next=blocks[blkIdx+1];
-    const note=blk.note||'';
-    const after=note.includes('→')?note.split('→')[1].trim():'';
-    const tm=after.match(/(\d{1,2}):(\d{2})/);
-    const hour=tm?parseInt(tm[1]):-1;
-    if(isSchool&&!inFerien&&hour<0)return next.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour<10)return next.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour>=17)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    return {s:0.5,i:0.5};
-  }
-  if(isFirst&&blkIdx>0){
-    const prev=blocks[blkIdx-1];
-    const note=prev.note||'';
-    const after=note.includes('→')?note.split('→')[1].trim():'';
-    const tm=after.match(/(\d{1,2}):(\d{2})/);
-    const hour=tm?parseInt(tm[1]):-1;
-    if(isSchool&&!inFerien&&hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour<10)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    if(hour>=17)return prev.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
-    return {s:0.5,i:0.5};
-  }
-  return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+// Show countdown — called first, independent
+var cntEl=document.getElementById("cnt");
+var curBlk=null;
+for(var bi=0;bi<blocks.length;bi++){
+  var v=dFA(blocks[bi].von),bx=dFA(blocks[bi].bis);
+  if(now>=v&&now<bx){curBlk=blocks[bi];break;}
+}
+if(curBlk&&cntEl){
+  var bis2=dFA(curBlk.bis);
+  var diff=Math.ceil((bis2-now)/(1000*60*60*24));
+  var isPapa=curBlk.wer==="sebastian";
+  var wer=isPapa?"Papa":"Mama";
+  var icon=isPapa?"&#x1F468;":"&#x1F469;";
+  var bg=isPapa?"#4AAD6A":"#4B80F0";
+  var txt=diff<=0?"Heute Wechsel":diff===1?"Noch 1 Tag":"Noch "+diff+" Tage";
+  cntEl.style.background=bg;
+  cntEl.style.display="flex";
+  cntEl.innerHTML='<div class="cnt-icon">'+icon+'</div><div><div style="font-size:12px;font-weight:700;opacity:.85;margin-bottom:2px;">Du bist gerade bei '+wer+'</div><div class="cnt-days">'+txt+'</div><div class="cnt-sub">'+fmt(curBlk.von)+" &rarr; "+fmt(curBlk.bis)+'</div></div>';
 }
 
 function render(){
-  const con=document.getElementById('content');
-  con.innerHTML='';
-
-  // Countdown card
-  const curBlk=blocks.find(b=>{const v=dFA(b.von),bi=dFA(b.bis);return now>=v&&now<bi;});
-  const card=document.getElementById('countdown-card');
-  if(curBlk){
-    const bis=dFA(curBlk.bis);
-    const diff=Math.ceil((bis-now)/(1000*60*60*24));
-    const isPapa=curBlk.wer==='sebastian';
-    const wer=isPapa?'Papa':'Mama';
-    const icon=isPapa?'👨':'👩';
-    const bg=isPapa?'#4AAD6A':'#4B80F0';
-    let txt=diff<=0?'Heute Übergabe':diff===1?'Noch 1 Tag':`Noch ${diff} Tage`;
-    card.style.cssText=`display:flex;align-items:center;gap:14px;background:${bg};color:#fff;padding:14px 16px;`;
-    card.innerHTML=`
-      <div style="font-size:34px;line-height:1;">${icon}</div>
-      <div>
-        <div style="font-size:12px;font-weight:700;opacity:0.85;margin-bottom:2px;">Du bist gerade bei ${wer}</div>
-        <div style="font-size:26px;font-weight:900;line-height:1;letter-spacing:-0.5px;">${txt}</div>
-        <div style="font-size:11px;font-weight:600;opacity:0.75;margin-top:3px;">${fmt(curBlk.von)} → ${fmt(curBlk.bis)}</div>
-      </div>`;
-  } else {
-    card.style.display='none';
-  }
-
-  // Group blocks by month
-  const grp={},ord=[];
-  blocks.forEach(b=>{const k=b.von[1];if(!grp[k]){grp[k]=[];ord.push(k);}grp[k].push(b);});
-
-  ord.forEach(k=>{
-    const sec=document.createElement('div');
-    const mh=document.createElement('div');mh.className='month-title';mh.textContent=MN[k-1]+' 2026';sec.appendChild(mh);
-
-    grp[k].forEach((b,bi_local)=>{
-      const blkIdx=blocks.indexOf(b);
-      const vonD=dFA(b.von),bisD=dFA(b.bis);
-      const isCur=now>=vonD&&now<bisD;
-
-      // Collect Julius events in this block
-      let cur=new Date(vonD);
-      const evts=[];
-      while(cur<=bisD){
-        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
-        if(TM[key])TM[key].forEach(t=>{if(isJuliusEvent(t))evts.push({...t});});
+  var con=document.getElementById("main");
+  if(!con)return;
+  con.innerHTML="";
+  var grp={},ord=[];
+  blocks.forEach(function(b){var k=b.von[1];if(!grp[k]){grp[k]=[];ord.push(k);}grp[k].push(b);});
+  ord.forEach(function(k){
+    var sec=document.createElement("div");
+    var mh=document.createElement("div");mh.className="mth";mh.textContent=MN[k-1]+" 2026";sec.appendChild(mh);
+    grp[k].forEach(function(b){
+      var blkIdx=blocks.indexOf(b);
+      var vonD=dFA(b.von),bisD=dFA(b.bis);
+      var isCur=now>=vonD&&now<bisD;
+      // Events
+      var evts=[],cur=new Date(vonD);
+      while(true){
+        var key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
+        if(TM[key])TM[key].forEach(function(t){if(isJulius(t))evts.push(Object.assign({},t));});
         if(cur.getTime()===bisD.getTime())break;
         cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
       }
-      evts.sort((a,b)=>a.month!==b.month?a.month-b.month:a.day!==b.day?a.day-b.day:(a.time||'').localeCompare(b.time||''));
-
-      // Compute days for Julius (dad=sebastian)
-      let ts=0,ti=0;
-      cur=new Date(vonD);
+      evts.sort(function(a,b){return a.month!==b.month?a.month-b.month:a.day!==b.day?a.day-b.day:(a.time||"").localeCompare(b.time||"");});
+      // Day score
+      var ts=0,cur2=new Date(vonD);
       while(true){
-        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
-        const isFirst=key===d2s(b.von[0],b.von[1],b.von[2]);
-        const isLast=key===d2s(b.bis[0],b.bis[1],b.bis[2]);
-        const sc=getDayScore(cur,b,blkIdx,isFirst,isLast);
-        ts+=sc.s;ti+=sc.i;
-        if(isLast)break;
-        cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+        var key2=d2s(cur2.getFullYear(),cur2.getMonth()+1,cur2.getDate());
+        var vonKey=d2s(b.von[0],b.von[1],b.von[2]),bisKey=d2s(b.bis[0],b.bis[1],b.bis[2]);
+        var sc=getScore(cur2,b,blkIdx,key2===vonKey,key2===bisKey);
+        ts+=sc.s;
+        if(key2===bisKey)break;
+        cur2=new Date(cur2.getFullYear(),cur2.getMonth(),cur2.getDate()+1);
       }
-      const papaDays=ts;
-
       // Card
-      const card=document.createElement('div');
-      card.className='block-card '+b.wer+(isCur?' current':'');
-      card.style.position='relative';
-
-      // Vertical name
-      const nameCol=document.createElement('div');nameCol.className='card-name-col';
-      const nameV=document.createElement('div');nameV.className='card-name-vert '+b.wer;nameV.textContent=b.wer==='sebastian'?'Papa':'Mama';
-      nameCol.appendChild(nameV);card.appendChild(nameCol);
-
+      var card=document.createElement("div");
+      card.className="card "+b.wer+(isCur?" now":"");
+      // Name col
+      var nc=document.createElement("div");nc.className="card-name";
+      var nv=document.createElement("div");nv.className="card-name-v "+b.wer;
+      nv.textContent=b.wer==="sebastian"?"Papa":"Mama";
+      nc.appendChild(nv);card.appendChild(nc);
       // Ferien icon
-      if(b.ferien){const fi=document.createElement('div');fi.className='ferien-icon';fi.textContent=FERIEN_ICON[b.ferien]||'';card.appendChild(fi);}
-
+      if(b.ferien){var fi=document.createElement("div");fi.className="ficon";fi.innerHTML=FICON[b.ferien]||"";card.appendChild(fi);}
       // Body
-      const body=document.createElement('div');body.className='card-body';
-
-      const row1=document.createElement('div');row1.className='card-row1';
-      const badge=document.createElement('div');badge.className='card-badge '+b.wer;
-      badge.textContent=papaDays%1===0?papaDays.toFixed(0):papaDays.toFixed(1);
-      row1.appendChild(badge);
-
-      const info=document.createElement('div');info.className='card-info';
-      const dateEl=document.createElement('div');dateEl.className='card-date';dateEl.textContent=fmt(b.von)+' → '+fmt(b.bis);info.appendChild(dateEl);
-      if(b.note){const noteEl=document.createElement('div');noteEl.className='card-note';noteEl.textContent=b.note;info.appendChild(noteEl);}
-      row1.appendChild(info);
-
-      const chev=document.createElement('span');chev.className='chevron';chev.id='chev-'+blkIdx;chev.textContent='▼';
-      row1.appendChild(chev);
-      body.appendChild(row1);
+      var body=document.createElement("div");body.className="card-body";
+      var bdg=document.createElement("div");bdg.className="badge "+b.wer;
+      bdg.textContent=ts%1===0?ts.toFixed(0):ts.toFixed(1);
+      body.appendChild(bdg);
+      var info=document.createElement("div");info.className="card-info";
+      var de=document.createElement("div");de.className="card-date";de.textContent=fmt(b.von)+" \u2192 "+fmt(b.bis);info.appendChild(de);
+      if(b.note){var ne=document.createElement("div");ne.className="card-note";ne.textContent=b.note;info.appendChild(ne);}
+      body.appendChild(info);
+      var chev=document.createElement("span");chev.className="chev";chev.id="ch"+blkIdx;chev.textContent="\u25BC";
+      body.appendChild(chev);
       card.appendChild(body);
-
       // Accordion
-      const acc=document.createElement('div');acc.className='acc';acc.id='acc-'+blkIdx;
-
-      // Day chips
-      const chips=document.createElement('div');chips.className='chips-row';
-      cur=new Date(vonD);
+      var acc=document.createElement("div");acc.className="acc";acc.id="ac"+blkIdx;
+      // Chips
+      var chips=document.createElement("div");chips.className="chips";
+      var cc=new Date(vonD);
       while(true){
-        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
-        const isFirst=key===d2s(b.von[0],b.von[1],b.von[2]);
-        const isLast=key===d2s(b.bis[0],b.bis[1],b.bis[2]);
-        const sc=getDayScore(cur,b,blkIdx,isFirst,isLast);
-        const isToday=cur.getFullYear()===now.getFullYear()&&cur.getMonth()===now.getMonth()&&cur.getDate()===now.getDate();
-        const isFree=isNonSchool(cur);
-        const chip=document.createElement('div');
-        let cls='chip';
-        if(sc.s===1)cls+=' seb';else if(sc.i===1)cls+=' isa';else if(sc.s===0.5)cls+=' half';
-        if(isFree&&cur.getDay()!==0&&cur.getDay()!==6)cls+=' free-day';
-        if(isToday)cls+=' today';
+        var ckey=d2s(cc.getFullYear(),cc.getMonth()+1,cc.getDate());
+        var vk=d2s(b.von[0],b.von[1],b.von[2]),bk=d2s(b.bis[0],b.bis[1],b.bis[2]);
+        var sc2=getScore(cc,b,blkIdx,ckey===vk,ckey===bk);
+        var isToday2=cc.getFullYear()===now.getFullYear()&&cc.getMonth()===now.getMonth()&&cc.getDate()===now.getDate();
+        var isFree=isNS(cc)&&cc.getDay()!==0&&cc.getDay()!==6;
+        var chip=document.createElement("div");
+        var cls="chip";
+        if(sc2.s===1)cls+=" s";else if(sc2.i===1)cls+=" i";else if(sc2.s===0.5)cls+=" half";
+        if(isFree)cls+=" free";
+        if(isToday2)cls+=" today";
         chip.className=cls;
-        const d1=document.createElement('div');d1.className='chip-dow';d1.textContent=DOW[cur.getDay()];
-        const d2=document.createElement('div');d2.className='chip-date';d2.textContent=String(cur.getDate()).padStart(2,'0')+'.'+String(cur.getMonth()+1).padStart(2,'0')+'.';
+        var d1=document.createElement("div");d1.className="chip-d";d1.textContent=DOW[cc.getDay()];
+        var d2=document.createElement("div");d2.className="chip-dt";d2.textContent=String(cc.getDate()).padStart(2,"0")+"."+String(cc.getMonth()+1).padStart(2,"0")+".";
         chip.appendChild(d1);chip.appendChild(d2);chips.appendChild(chip);
-        if(isLast)break;
-        cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+        if(ckey===bk)break;
+        cc=new Date(cc.getFullYear(),cc.getMonth(),cc.getDate()+1);
       }
       acc.appendChild(chips);
-
-      if(evts.length===0){
-        const em=document.createElement('div');em.className='acc-empty';em.textContent='Keine Termine';acc.appendChild(em);
-      } else {
-        evts.forEach(t=>{
-          const item=document.createElement('div');item.className='acc-item';
-          const barCls=t.who==='familie'||t.who==='geburtstag'?'familie':t.who==='rosalie'?'rosalie':t.who==='both'?'both':'';
-          const bar=document.createElement('div');bar.className='acc-bar '+barCls;
-          const dc=document.createElement('div');dc.className='acc-date-col';dc.textContent=String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.';
-          const tc=document.createElement('div');tc.className='acc-time-col';tc.textContent=t.time||'';
-          const ttl=document.createElement('div');ttl.className='acc-title';ttl.textContent=t.title;
-          item.appendChild(bar);item.appendChild(dc);item.appendChild(tc);item.appendChild(ttl);
-          acc.appendChild(item);
-        });
-      }
-
+      if(evts.length===0){var em=document.createElement("div");em.className="evt-empty";em.textContent="Keine Termine";acc.appendChild(em);}
+      else{evts.forEach(function(t){
+        var item=document.createElement("div");item.className="evt";
+        var bc=t.who==="rosalie"?"r":t.who==="both"?"b":(t.who==="familie"||t.who==="geburtstag")?"f":"";
+        var bar=document.createElement("div");bar.className="evt-bar "+bc;
+        var dc=document.createElement("div");dc.className="evt-date";dc.textContent=String(t.day).padStart(2,"0")+"."+String(t.month).padStart(2,"0")+".";
+        var tc=document.createElement("div");tc.className="evt-time";tc.textContent=t.time||"";
+        var ttl=document.createElement("div");ttl.className="evt-title";ttl.textContent=t.title;
+        item.appendChild(bar);item.appendChild(dc);item.appendChild(tc);item.appendChild(ttl);acc.appendChild(item);
+      });}
       card.appendChild(acc);
-      card.onclick=()=>{
-        acc.classList.toggle('open');
-        document.getElementById('chev-'+blkIdx).classList.toggle('open');
+      card.onclick=function(){
+        var id=this.querySelector(".acc").id;
+        var a=document.getElementById(id);
+        var c=document.getElementById("ch"+id.substring(2));
+        if(a){a.classList.toggle("open");if(c)c.classList.toggle("open");}
       };
       sec.appendChild(card);
     });
     con.appendChild(sec);
   });
-
-  // Scroll to current
-  setTimeout(()=>{const c=document.querySelector('.current');if(c)c.scrollIntoView({behavior:'instant',block:'start'});},50);
+  setTimeout(function(){var c=document.querySelector(".now");if(c)c.scrollIntoView({behavior:"instant",block:"start"});},50);
 }
 
 function toggleDark(){
-  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
-  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
-  document.getElementById('darkbtn').textContent=isDark?'🌙':'☀️';
-  localStorage.setItem('theme-julius',isDark?'light':'dark');
+  var isDark=document.documentElement.getAttribute("data-theme")==="dark";
+  document.documentElement.setAttribute("data-theme",isDark?"light":"dark");
+  document.getElementById("dbtn").textContent=isDark?"\u{1F319}":"\u2600\uFE0F";
+  localStorage.setItem("j-theme",isDark?"light":"dark");
 }
-(function(){
-  const t=localStorage.getItem('theme-julius');
-  if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('darkbtn');if(b)b.textContent='☀️';});}
-})();
+(function(){var t=localStorage.getItem("j-theme");if(t==="dark")document.documentElement.setAttribute("data-theme","dark");})();
 
 render();
 </script>
