@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julius' Kalender 2026</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Julius 2026">
+<meta name="theme-color" content="#F59E0B">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --julius: #D97706; --julius-mid: #F59E0B; --julius-light: #FEF3C7; --julius-pale: #FFFBEB;
+  --sebastian: #2D8C4E; --sebastian-mid: #4AAD6A; --sebastian-light: #E8F7EE; --sebastian-pale: #F3FBF6;
+  --isabel: #2563EB; --isabel-mid: #4B80F0; --isabel-light: #E8F0FE; --isabel-pale: #F0F5FF;
+  --rosalie: #DB2777; --rosalie-mid: #EC4899;
+  --familie: #7C3AED; --familie-mid: #8B5CF6; --familie-light: #EDE9FE;
+  --bg: #FAF8F5; --surface: #FFFFFF; --warm: #F5F1EB;
+  --text: #2D2926; --text2: #6B6560; --text3: #A89F96; --border: #E8E2D9;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06); --shadow-lg: 0 4px 24px rgba(0,0,0,0.1);
+  --radius: 14px; --radius-sm: 10px;
+}
+[data-theme="dark"] {
+  --bg: #141210; --surface: #1E1B17; --warm: #252118;
+  --text: #FFFFFF; --text2: #E8E0D8; --text3: #7A7168; --border: #3D3630;
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+  --julius-light: #2A1F08; --julius-pale: #1E1608;
+  --sebastian-pale: #152A1C; --sebastian-light: #1C3824;
+  --isabel-pale: #131B2E; --isabel-light: #182338;
+  --familie-light: #1E1230;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 2px solid var(--julius-mid); box-shadow: var(--shadow); padding: 12px 16px 10px; display: flex; align-items: center; gap: 10px; }
+.header-title { font-family: Nunito, sans-serif; font-size: 20px; font-weight: 900; color: var(--julius); flex: 1; }
+.header-sub { font-size: 12px; color: var(--text3); font-weight: 600; }
+.dark-btn { background: var(--warm); border: 2px solid var(--border); border-radius: 20px; padding: 4px 10px; cursor: pointer; font-size: 15px; }
+
+/* Banner */
+.banner { color: #fff; padding: 14px 16px; font-family: Nunito, sans-serif; display: flex; align-items: center; gap: 14px; }
+.banner.sebastian { background: linear-gradient(135deg, #2D8C4E, #4AAD6A); }
+.banner.isabel { background: linear-gradient(135deg, #2563EB, #4B80F0); }
+.banner-icon { font-size: 32px; flex-shrink: 0; }
+.banner-body { flex: 1; }
+.banner-wer { font-size: 13px; font-weight: 700; opacity: 0.85; margin-bottom: 2px; }
+.banner-countdown-big { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -0.5px; }
+.banner-dates { font-size: 11px; font-weight: 600; opacity: 0.75; margin-top: 3px; }
+
+/* Content */
+.content { padding: 16px; max-width: 640px; margin: 0 auto; }
+.month-title { font-family: Nunito, sans-serif; font-size: 16px; font-weight: 900; color: var(--text); margin: 20px 0 10px; display: flex; align-items: center; gap: 10px; }
+.month-title::after { content: ''; flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
+
+/* Block card */
+.block-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; box-shadow: var(--shadow); cursor: pointer; position: relative; }
+.block-card.current { border-color: #E53935; box-shadow: 0 0 0 2px rgba(229,57,53,0.2), var(--shadow-lg); }
+.block-card.sebastian { border-left: 5px solid var(--sebastian-mid); }
+.block-card.isabel { border-left: 5px solid var(--isabel-mid); }
+.card-name-col { position: absolute; left: 0; top: 0; bottom: 0; width: 20px; display: flex; align-items: center; justify-content: center; }
+.card-name-vert { writing-mode: vertical-rl; transform: rotate(180deg); font-family: Nunito, sans-serif; font-size: 9px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sebastian-mid); }
+.card-name-vert.isabel { color: var(--isabel-mid); }
+.card-body { padding: 10px 10px 8px 28px; }
+.card-row1 { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.card-badge { font-family: Nunito, sans-serif; font-size: 18px; font-weight: 900; min-width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.card-badge.sebastian { background: var(--sebastian-pale); color: var(--sebastian); border: 1.5px solid var(--sebastian-light); }
+.card-badge.isabel { background: var(--isabel-pale); color: var(--isabel); border: 1.5px solid var(--isabel-light); }
+.card-info { flex: 1; min-width: 0; }
+.card-date { font-family: Nunito, sans-serif; font-size: 15px; font-weight: 800; color: var(--text2); }
+.card-note { font-size: 11px; color: var(--text3); font-weight: 600; margin-top: 1px; }
+.ferien-icon { position: absolute; top: 7px; right: 9px; font-size: 18px; }
+.chevron { font-size: 10px; color: var(--text3); transition: transform 0.2s; margin-left: auto; padding-right: 6px; }
+.chevron.open { transform: rotate(180deg); }
+
+/* Accordion */
+.acc { display: none; border-top: 1px solid var(--border); padding: 8px 12px 10px 28px; }
+.acc.open { display: block; }
+
+/* Day chips */
+.chips-row { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+.chip { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 3px 6px; border-radius: 6px; border: 1.5px solid var(--border); min-width: 32px; }
+.chip.seb { background: var(--sebastian-pale); border-color: var(--sebastian-light); }
+.chip.isa { background: var(--isabel-pale); border-color: var(--isabel-light); }
+.chip.half { background: linear-gradient(135deg, var(--sebastian-pale) 50%, var(--isabel-pale) 50%); }
+.chip.free-day { border-width: 2px; border-color: #F59E0B; }
+.chip.today { box-shadow: 0 0 0 2px var(--julius-mid); }
+.chip-dow { font-family: Nunito, sans-serif; font-size: 11px; font-weight: 900; color: var(--text); }
+.chip-date { font-size: 9px; color: var(--text3); font-weight: 600; }
+
+/* Events */
+.acc-empty { font-size: 12px; color: var(--text3); font-style: italic; }
+.acc-item { display: flex; align-items: center; gap: 0; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.acc-item:last-child { border-bottom: none; }
+.acc-bar { width: 3px; height: 24px; border-radius: 2px; flex-shrink: 0; margin-right: 8px; background: var(--julius-mid); }
+.acc-bar.rosalie { background: var(--rosalie-mid); }
+.acc-bar.both { background: var(--text3); }
+.acc-bar.familie { background: var(--familie-mid); }
+.acc-bar.geburtstag { background: var(--familie-mid); }
+.acc-date-col { font-size: 11px; font-weight: 700; color: var(--text3); width: 42px; flex-shrink: 0; font-family: Nunito, sans-serif; }
+.acc-time-col { font-size: 11px; font-weight: 700; color: var(--text3); width: 40px; flex-shrink: 0; font-family: Nunito, sans-serif; }
+.acc-title { font-size: 12px; font-weight: 600; color: var(--text); flex: 1; }
+
+/* Tags row */
+.tags-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 2px; }
+.tag { font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 10px; font-family: Nunito, sans-serif; }
+.tag.julius { background: var(--julius-light); color: var(--julius); }
+.tag.rosalie { background: var(--rosalie-mid); color: #fff; }
+.tag.both { background: var(--warm); color: var(--text2); }
+.tag.familie { background: var(--familie-light); color: var(--familie-mid); }
+.tag.school { background: var(--surface); border: 1px solid var(--border); color: var(--text3); }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="flex:1;">
+    <div class="header-title">Julius' Kalender</div>
+    <div class="header-sub">2026</div>
+  </div>
+  <button class="dark-btn" id="darkbtn" onclick="toggleDark()">🌙</button>
+</div>
+<div id="countdown-card" style="display:none;padding:12px 16px;font-family:Nunito,sans-serif;"></div>
+<div class="content" id="content"></div>
+
+<script>
+const FREE_DAYS=new Set(['2026-01-01','2026-02-16','2026-02-17','2026-03-30','2026-03-31','2026-04-01','2026-04-02','2026-04-03','2026-04-04','2026-04-05','2026-04-06','2026-04-07','2026-04-08','2026-04-09','2026-04-10','2026-04-11','2026-05-01','2026-05-14','2026-05-15','2026-05-25','2026-05-26','2026-06-04','2026-06-05','2026-07-20','2026-07-21','2026-07-22','2026-07-23','2026-07-24','2026-07-25','2026-07-26','2026-07-27','2026-07-28','2026-07-29','2026-07-30','2026-07-31','2026-08-01','2026-08-02','2026-08-03','2026-08-04','2026-08-05','2026-08-06','2026-08-07','2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16','2026-08-17','2026-08-18','2026-08-19','2026-08-20','2026-08-21','2026-08-22','2026-08-23','2026-08-24','2026-08-25','2026-08-26','2026-08-27','2026-08-28','2026-08-29','2026-08-30','2026-08-31','2026-09-01','2026-10-03','2026-10-17','2026-10-18','2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-25','2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30','2026-10-31','2026-11-01','2026-12-23','2026-12-24','2026-12-25','2026-12-26','2026-12-27','2026-12-28','2026-12-29','2026-12-30','2026-12-31','2027-01-01','2027-01-02','2027-01-03','2027-01-04','2027-01-05','2027-01-06']);
+
+function isNonSchool(d){
+  const dow=d.getDay();
+  if(dow===0||dow===6)return true;
+  return FREE_DAYS.has(d2s(d.getFullYear(),d.getMonth()+1,d.getDate()));
+}
+
+function d2s(y,m,d){return y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');}
+function dFA(a){return new Date(a[0],a[1]-1,a[2]);}
+function fmt(a){return String(a[2]).padStart(2,'0')+'.'+String(a[1]).padStart(2,'0')+'.';}
+
+const blocks=[
+  {von:[2026,1,2],bis:[2026,1,11],wer:'sebastian',note:'Fr 18:00 → So 10:00',ferien:null},
+  {von:[2026,1,11],bis:[2026,1,23],wer:'isabel',note:'So 10:00 → Fr 08:00',ferien:null},
+  {von:[2026,1,23],bis:[2026,1,28],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,1,28],bis:[2026,2,6],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,2,6],bis:[2026,2,11],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,2,11],bis:[2026,2,20],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,2,20],bis:[2026,2,25],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,2,25],bis:[2026,3,6],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,3,6],bis:[2026,3,11],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,3,11],bis:[2026,3,14],wer:'isabel',note:'Mi 13:30 → Sa 14:00',ferien:null},
+  {von:[2026,3,14],bis:[2026,3,15],wer:'sebastian',note:'Sa 14:00 → So 12:00',ferien:null},
+  {von:[2026,3,15],bis:[2026,3,20],wer:'isabel',note:'So 12:00 → Fr 08:00',ferien:null},
+  {von:[2026,3,20],bis:[2026,3,24],wer:'sebastian',note:'Fr 13:00 → Di 18:00',ferien:null},
+  {von:[2026,3,24],bis:[2026,3,29],wer:'isabel',note:'Di 18:00 → So 18:00',ferien:null},
+  {von:[2026,3,29],bis:[2026,4,6],wer:'sebastian',note:'So 18:00 → Mo 19:00',ferien:'oster'},
+  {von:[2026,4,6],bis:[2026,4,9],wer:'isabel',note:'Mo 19:00 → Do 18:00',ferien:'oster'},
+  {von:[2026,4,9],bis:[2026,4,15],wer:'sebastian',note:'Do 18:00 → Mi 08:00',ferien:'oster'},
+  {von:[2026,4,15],bis:[2026,4,17],wer:'isabel',note:'Mi 08:00 → Fr 13:00',ferien:'oster'},
+  {von:[2026,4,17],bis:[2026,4,18],wer:'sebastian',note:'Fr 13:00 → Sa 18:00',ferien:'oster'},
+  {von:[2026,4,18],bis:[2026,5,1],wer:'isabel',note:'Sa 18:00 → Fr 13:00',ferien:null},
+  {von:[2026,5,1],bis:[2026,5,6],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,5,6],bis:[2026,5,15],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,5,15],bis:[2026,5,20],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,5,20],bis:[2026,5,29],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:'pfingst'},
+  {von:[2026,5,29],bis:[2026,6,3],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,6,3],bis:[2026,6,12],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,6,12],bis:[2026,6,17],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,6,17],bis:[2026,6,20],wer:'isabel',note:'Mi 13:30 → Sa 18:00',ferien:null},
+  {von:[2026,6,20],bis:[2026,6,22],wer:'sebastian',note:'Sa 18:00 → Mo 18:00',ferien:null},
+  {von:[2026,6,22],bis:[2026,6,26],wer:'isabel',note:'Mo 18:00 → Fr 08:00',ferien:null},
+  {von:[2026,6,26],bis:[2026,7,1],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,7,1],bis:[2026,7,10],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,7,10],bis:[2026,7,15],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,7,15],bis:[2026,7,17],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,7,17],bis:[2026,8,8],wer:'sebastian',note:'Fr 13:30 → Sa 18:00',ferien:'sommer'},
+  {von:[2026,8,8],bis:[2026,9,4],wer:'isabel',note:'Sa 18:00 → Fr 13:00',ferien:'sommer'},
+  {von:[2026,9,4],bis:[2026,9,9],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,9,9],bis:[2026,9,18],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,9,18],bis:[2026,9,23],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,9,23],bis:[2026,10,2],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,10,2],bis:[2026,10,7],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,10,7],bis:[2026,10,16],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,10,16],bis:[2026,10,23],wer:'sebastian',note:'Fr 13:00 → Fr 13:00',ferien:'herbst'},
+  {von:[2026,10,23],bis:[2026,10,30],wer:'isabel',note:'Fr 13:00 → Fr 13:00',ferien:'herbst'},
+  {von:[2026,10,30],bis:[2026,11,4],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:'herbst'},
+  {von:[2026,11,4],bis:[2026,11,13],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,11,13],bis:[2026,11,18],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,11,18],bis:[2026,11,27],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,11,27],bis:[2026,12,2],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,12,2],bis:[2026,12,11],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,12,11],bis:[2026,12,16],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
+  {von:[2026,12,16],bis:[2026,12,23],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,12,23],bis:[2026,12,30],wer:'sebastian',note:'Mi 13:00 → Mi 13:00',ferien:'winter'},
+  {von:[2026,12,30],bis:[2027,1,6],wer:'isabel',note:'Mi 13:00 → Mi 13:00',ferien:'winter'},
+];
+
+const TR=[
+  {date:[2026,3,17],time:'17:00',title:'Turnfest Rosalie',who:'rosalie',type:'single',schoolOf:null},
+  {date:[2026,3,30],time:'11:00',title:'Zahnarzt Kamen',who:'both',type:'single',schoolOf:null},
+  {date:[2026,4,10],time:null,title:'Efteling mit der Familie',who:'familie',type:'single',schoolOf:null},
+  {date:[2026,5,30],time:'14:00',title:'Julius Geburtstag feiern bei Oma (Ostbüren)',who:'familie',type:'single',schoolOf:null},
+  {date:[2026,4,15],time:'18:00',title:'Elternstammtisch (China City)',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,4,22],time:'16:00',title:'Jekits Konzert (Turnhalle Grundschule)',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,4,18],time:'14:00',title:'Kinder zu Isabel',who:'both',type:'single',schoolOf:null},
+  {date:[2026,4,29],time:'09:00',title:'Hr. Dehrenbach',who:'julius',type:'single',schoolOf:null},
+  {date:[2026,4,7],time:'14:45',title:'Kieferorthopäde',who:'julius',type:'single',schoolOf:null},
+  {recurring:{dow:2,until:[2026,12,31]},time:'16:00',title:'Tennis Julius',who:'julius',type:'recurring',schoolOf:null},
+  {date:[2026,6,15],time:null,title:'Maxipark',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,6,25],time:null,title:'Bundesjugendspiele',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,7,2],time:null,title:'Klassenfest & Radfahrtraining',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {dateRange:[[2026,3,9],[2026,3,14]],title:'Zirkuswoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {dateRange:[[2026,3,16],[2026,3,20]],title:'Fußgängerwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,3,21],time:'10:00',title:'Frühjahrsputz Königsborn',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,3,23],time:'08:00',title:'Radfahrwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,3,24],time:'08:00',title:'Radfahrwoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {dateRange:[[2026,5,4],[2026,5,8]],title:'Elternsprechtagswoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  // Julius-spezifisch
+  {date:[2026,2,6],time:null,title:'Zeugnisausgabe Halbjahr',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,2,9],time:null,title:'Unterrichtsfrei (Studientag)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,2,16],time:null,title:'Unterrichtsfrei (Rosenmontag)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,7,10],time:null,title:'Schollympische Spiele',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,7,17],time:null,title:'Letzter Schultag / Zeugnisausgabe',who:'julius',type:'single',schoolOf:'julius'},
+  // Beide Kinder
+  {date:[2026,3,27],time:null,title:'⛔ Letzter Schultag vor Osterferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,4,13],time:null,title:'✅ Erster Schultag nach Osterferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,4,13],time:null,title:'Sebastian bringt zur Schule, Isabel holt ab',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,5,22],time:null,title:'⛔ Letzter Schultag vor Pfingsten',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,5,27],time:null,title:'✅ Erster Schultag nach Pfingsten',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,7,16],time:null,title:'📋 Zeugnisausgabe Rosalie',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,7,17],time:null,title:'⛔ Letzter Schultag vor Sommerferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,9,2],time:null,title:'✅ Erster Schultag nach Sommerferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,10,16],time:null,title:'⛔ Letzter Schultag vor Herbstferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,11,2],time:null,title:'✅ Erster Schultag nach Herbstferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,12,22],time:null,title:'⛔ Letzter Schultag vor Winterferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2027,1,7],time:null,title:'✅ Erster Schultag nach Winterferien',who:'both',type:'single',schoolOf:'both'},
+  // Kommentare
+  {date:[2026,3,31],time:null,title:'Kein Tennis & kein Turnen heute',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,4,10],time:null,title:'Kinder bleiben bei Sebastian durch bis nach Efteling',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,6,20],time:'18:00',title:'Isabel: Fortbildung Bad Horn Meinberg (So+Mo)',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,6,21],time:null,title:'Isabel: Fortbildung Bad Horn Meinberg',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,8,15],time:null,title:'Isabel Sommerurlaub mit Kindern beginnt',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,8,30],time:null,title:'Isabel Sommerurlaub mit Kindern endet',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,3,14],time:'14:00',title:'Zirkusaufführung Rosalie',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,2,14],time:null,title:'Rosi Kindergeburtstag-Feier (Schatzsuche)',who:'rosalie',type:'single',schoolOf:null},
+  {date:[2026,2,10],time:'15:00',title:'Julius Zahnspange (neue Spange oben)',who:'julius',type:'single',schoolOf:null},
+  // Geburtstage Kinder
+  {date:[2026,1,29],time:null,title:'🎂 Rosalie Geburtstag (7)',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,30],time:null,title:'🎂 Julius Geburtstag (12)',who:'geburtstag',type:'single',schoolOf:null},
+  // Geburtstage Familie
+  {date:[2026,1,4],time:null,title:'🎂 Atlas Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,25],time:null,title:'🎂 Franz-Georg Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,4,24],time:null,title:'🎂 Oliver Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,3,12],time:null,title:'🎂 Hannes Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,2,4],time:null,title:'🎂 Emil Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,6,9],time:null,title:'🎂 Laura Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,8,5],time:null,title:'🎂 Daniel Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,3],time:null,title:'🎂 Sebastian Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,10],time:null,title:'🎂 Dilek Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,10,12],time:null,title:'🎂 Jonna Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,11,3],time:null,title:'🎂 Thomas Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,11,18],time:null,title:'🎂 Isabel Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,12,15],time:null,title:'🎂 Mathias Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,12,25],time:null,title:'🎂 Livia Hangebrauck',who:'geburtstag',type:'single',schoolOf:null},
+  // GSG Termine
+  {date:[2026,4,20],time:'19:00',title:'Elternabend Julius',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,2,17],time:null,title:'Kein Unterricht — Distanzlernen (Kinder zu Hause)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'14:00',title:'2. Elternsprechtag Julius (14:00–19:00)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,14],time:null,title:'Christi Himmelfahrt — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,15],time:null,title:'Beweglicher Ferientag — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,6,4],time:null,title:'Fronleichnam — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,6,5],time:null,title:'Beweglicher Ferientag — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
+  {recurring:{dow:2,until:[2026,7,19]},time:'16:30',title:'Turnen Rosalie',who:'rosalie',type:'recurring',schoolOf:null},
+];
+
+const FERIEN_ICON={oster:'🐰',pfingst:'🌸',sommer:'☀️',herbst:'🍂',winter:'🌲'};
+const MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const DOW=['So','Mo','Di','Mi','Do','Fr','Sa'];
+const now=new Date();
+
+// Build termine map
+const TM={};
+function aT(k,t){if(!TM[k])TM[k]=[];TM[k].push(t);}
+TR.forEach(t=>{
+  if(t.date){aT(d2s(t.date[0],t.date[1],t.date[2]),{time:t.time,title:t.title,who:t.who,type:t.type,schoolOf:t.schoolOf||null,day:t.date[2],month:t.date[1]});}
+  else if(t.dateRange){let c=dFA(t.dateRange[0]),e=dFA(t.dateRange[1]);while(c<=e){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:null,title:t.title,who:t.who,type:t.type||'single',schoolOf:t.schoolOf||null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+1);}}
+  else if(t.recurring){const u=dFA(t.recurring.until);let c=t.recurring.from?dFA(t.recurring.from):new Date(2026,0,1);while(c.getDay()!==t.recurring.dow)c.setDate(c.getDate()+1);while(c<=u){aT(d2s(c.getFullYear(),c.getMonth()+1,c.getDate()),{time:t.time,title:t.title,who:t.who,type:'recurring',schoolOf:null,day:c.getDate(),month:c.getMonth()+1});c.setDate(c.getDate()+7);}}
+});
+
+// Filter: only Julius-relevant events
+function isJuliusEvent(t){
+  return t.who==='julius'||t.who==='both'||t.who==='familie'||t.who==='geburtstag'||(t.schoolOf==='julius'||t.schoolOf==='both');
+}
+
+// getDayScore (simplified for display)
+function getDayScore(dayDate,blk,blkIdx,isFirst,isLast){
+  const isSchool=!isNonSchool(dayDate);
+  const inFerien=!!blk.ferien;
+  if(isLast&&blkIdx<blocks.length-1){
+    const next=blocks[blkIdx+1];
+    const note=blk.note||'';
+    const after=note.includes('→')?note.split('→')[1].trim():'';
+    const tm=after.match(/(\d{1,2}):(\d{2})/);
+    const hour=tm?parseInt(tm[1]):-1;
+    if(isSchool&&!inFerien&&hour<0)return next.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour<10)return next.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour>=17)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    return {s:0.5,i:0.5};
+  }
+  if(isFirst&&blkIdx>0){
+    const prev=blocks[blkIdx-1];
+    const note=prev.note||'';
+    const after=note.includes('→')?note.split('→')[1].trim():'';
+    const tm=after.match(/(\d{1,2}):(\d{2})/);
+    const hour=tm?parseInt(tm[1]):-1;
+    if(isSchool&&!inFerien&&hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour<0)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour<10)return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    if(hour>=17)return prev.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+    return {s:0.5,i:0.5};
+  }
+  return blk.wer==='sebastian'?{s:1,i:0}:{s:0,i:1};
+}
+
+function render(){
+  const con=document.getElementById('content');
+  con.innerHTML='';
+
+  // Countdown card
+  const curBlk=blocks.find(b=>{const v=dFA(b.von),bi=dFA(b.bis);return now>=v&&now<bi;});
+  const card=document.getElementById('countdown-card');
+  if(curBlk){
+    const bis=dFA(curBlk.bis);
+    const diff=Math.ceil((bis-now)/(1000*60*60*24));
+    const isPapa=curBlk.wer==='sebastian';
+    const wer=isPapa?'Papa':'Mama';
+    const icon=isPapa?'👨':'👩';
+    const bg=isPapa?'#4AAD6A':'#4B80F0';
+    let txt=diff<=0?'Heute Übergabe':diff===1?'Noch 1 Tag':`Noch ${diff} Tage`;
+    card.style.cssText=`display:flex;align-items:center;gap:14px;background:${bg};color:#fff;padding:14px 16px;`;
+    card.innerHTML=`
+      <div style="font-size:34px;line-height:1;">${icon}</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;opacity:0.85;margin-bottom:2px;">Du bist gerade bei ${wer}</div>
+        <div style="font-size:26px;font-weight:900;line-height:1;letter-spacing:-0.5px;">${txt}</div>
+        <div style="font-size:11px;font-weight:600;opacity:0.75;margin-top:3px;">${fmt(curBlk.von)} → ${fmt(curBlk.bis)}</div>
+      </div>`;
+  } else {
+    card.style.display='none';
+  }
+
+  // Group blocks by month
+  const grp={},ord=[];
+  blocks.forEach(b=>{const k=b.von[1];if(!grp[k]){grp[k]=[];ord.push(k);}grp[k].push(b);});
+
+  ord.forEach(k=>{
+    const sec=document.createElement('div');
+    const mh=document.createElement('div');mh.className='month-title';mh.textContent=MN[k-1]+' 2026';sec.appendChild(mh);
+
+    grp[k].forEach((b,bi_local)=>{
+      const blkIdx=blocks.indexOf(b);
+      const vonD=dFA(b.von),bisD=dFA(b.bis);
+      const isCur=now>=vonD&&now<bisD;
+
+      // Collect Julius events in this block
+      let cur=new Date(vonD);
+      const evts=[];
+      while(cur<=bisD){
+        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
+        if(TM[key])TM[key].forEach(t=>{if(isJuliusEvent(t))evts.push({...t});});
+        if(cur.getTime()===bisD.getTime())break;
+        cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+      }
+      evts.sort((a,b)=>a.month!==b.month?a.month-b.month:a.day!==b.day?a.day-b.day:(a.time||'').localeCompare(b.time||''));
+
+      // Compute days for Julius (dad=sebastian)
+      let ts=0,ti=0;
+      cur=new Date(vonD);
+      while(true){
+        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
+        const isFirst=key===d2s(b.von[0],b.von[1],b.von[2]);
+        const isLast=key===d2s(b.bis[0],b.bis[1],b.bis[2]);
+        const sc=getDayScore(cur,b,blkIdx,isFirst,isLast);
+        ts+=sc.s;ti+=sc.i;
+        if(isLast)break;
+        cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+      }
+      const papaDays=ts;
+
+      // Card
+      const card=document.createElement('div');
+      card.className='block-card '+b.wer+(isCur?' current':'');
+      card.style.position='relative';
+
+      // Vertical name
+      const nameCol=document.createElement('div');nameCol.className='card-name-col';
+      const nameV=document.createElement('div');nameV.className='card-name-vert '+b.wer;nameV.textContent=b.wer==='sebastian'?'Papa':'Mama';
+      nameCol.appendChild(nameV);card.appendChild(nameCol);
+
+      // Ferien icon
+      if(b.ferien){const fi=document.createElement('div');fi.className='ferien-icon';fi.textContent=FERIEN_ICON[b.ferien]||'';card.appendChild(fi);}
+
+      // Body
+      const body=document.createElement('div');body.className='card-body';
+
+      const row1=document.createElement('div');row1.className='card-row1';
+      const badge=document.createElement('div');badge.className='card-badge '+b.wer;
+      badge.textContent=papaDays%1===0?papaDays.toFixed(0):papaDays.toFixed(1);
+      row1.appendChild(badge);
+
+      const info=document.createElement('div');info.className='card-info';
+      const dateEl=document.createElement('div');dateEl.className='card-date';dateEl.textContent=fmt(b.von)+' → '+fmt(b.bis);info.appendChild(dateEl);
+      if(b.note){const noteEl=document.createElement('div');noteEl.className='card-note';noteEl.textContent=b.note;info.appendChild(noteEl);}
+      row1.appendChild(info);
+
+      const chev=document.createElement('span');chev.className='chevron';chev.id='chev-'+blkIdx;chev.textContent='▼';
+      row1.appendChild(chev);
+      body.appendChild(row1);
+      card.appendChild(body);
+
+      // Accordion
+      const acc=document.createElement('div');acc.className='acc';acc.id='acc-'+blkIdx;
+
+      // Day chips
+      const chips=document.createElement('div');chips.className='chips-row';
+      cur=new Date(vonD);
+      while(true){
+        const key=d2s(cur.getFullYear(),cur.getMonth()+1,cur.getDate());
+        const isFirst=key===d2s(b.von[0],b.von[1],b.von[2]);
+        const isLast=key===d2s(b.bis[0],b.bis[1],b.bis[2]);
+        const sc=getDayScore(cur,b,blkIdx,isFirst,isLast);
+        const isToday=cur.getFullYear()===now.getFullYear()&&cur.getMonth()===now.getMonth()&&cur.getDate()===now.getDate();
+        const isFree=isNonSchool(cur);
+        const chip=document.createElement('div');
+        let cls='chip';
+        if(sc.s===1)cls+=' seb';else if(sc.i===1)cls+=' isa';else if(sc.s===0.5)cls+=' half';
+        if(isFree&&cur.getDay()!==0&&cur.getDay()!==6)cls+=' free-day';
+        if(isToday)cls+=' today';
+        chip.className=cls;
+        const d1=document.createElement('div');d1.className='chip-dow';d1.textContent=DOW[cur.getDay()];
+        const d2=document.createElement('div');d2.className='chip-date';d2.textContent=String(cur.getDate()).padStart(2,'0')+'.'+String(cur.getMonth()+1).padStart(2,'0')+'.';
+        chip.appendChild(d1);chip.appendChild(d2);chips.appendChild(chip);
+        if(isLast)break;
+        cur=new Date(cur.getFullYear(),cur.getMonth(),cur.getDate()+1);
+      }
+      acc.appendChild(chips);
+
+      if(evts.length===0){
+        const em=document.createElement('div');em.className='acc-empty';em.textContent='Keine Termine';acc.appendChild(em);
+      } else {
+        evts.forEach(t=>{
+          const item=document.createElement('div');item.className='acc-item';
+          const barCls=t.who==='familie'||t.who==='geburtstag'?'familie':t.who==='rosalie'?'rosalie':t.who==='both'?'both':'';
+          const bar=document.createElement('div');bar.className='acc-bar '+barCls;
+          const dc=document.createElement('div');dc.className='acc-date-col';dc.textContent=String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.';
+          const tc=document.createElement('div');tc.className='acc-time-col';tc.textContent=t.time||'';
+          const ttl=document.createElement('div');ttl.className='acc-title';ttl.textContent=t.title;
+          item.appendChild(bar);item.appendChild(dc);item.appendChild(tc);item.appendChild(ttl);
+          acc.appendChild(item);
+        });
+      }
+
+      card.appendChild(acc);
+      card.onclick=()=>{
+        acc.classList.toggle('open');
+        document.getElementById('chev-'+blkIdx).classList.toggle('open');
+      };
+      sec.appendChild(card);
+    });
+    con.appendChild(sec);
+  });
+
+  // Scroll to current
+  setTimeout(()=>{const c=document.querySelector('.current');if(c)c.scrollIntoView({behavior:'instant',block:'start'});},50);
+}
+
+function toggleDark(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('darkbtn').textContent=isDark?'🌙':'☀️';
+  localStorage.setItem('theme-julius',isDark?'light':'dark');
+}
+(function(){
+  const t=localStorage.getItem('theme-julius');
+  if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('darkbtn');if(b)b.textContent='☀️';});}
+})();
+
+render();
+</script>
+</body>
+</html>
