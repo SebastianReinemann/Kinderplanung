@@ -64,7 +64,7 @@ body{font-family:Nunito,sans-serif;background:var(--bg);color:var(--txt);}
 </style>
 </head>
 <body>
-<div class="hdr"><div class="hdr-title">Julius 2026</div><button class="dark-btn" id="dbtn" onclick="toggleDark()">&#127769;</button></div>
+<div class="hdr"><div class="hdr-title">Julius 2026</div><button class="dark-btn" id="dbtn" onclick="toggleDark()">&#9728;&#65039;</button></div>
 <div id="cnt" class="cnt" style="background:#4AAD6A;display:none;"></div>
 <div class="content" id="main"></div>
 <script>
@@ -374,7 +374,7 @@ function toggleDark(){
   document.getElementById("dbtn").textContent=isDark?"\u{1F319}":"\u2600\uFE0F";
   localStorage.setItem("j-theme",isDark?"light":"dark");
 }
-(function(){var t=localStorage.getItem("j-theme");if(t==="dark")document.documentElement.setAttribute("data-theme","dark");})();
+(function(){var t=localStorage.getItem("j-theme");if(t!=="light")document.documentElement.setAttribute("data-theme","dark");})();
 
 render();
 </script>
