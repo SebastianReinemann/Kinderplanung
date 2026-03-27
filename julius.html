@@ -226,7 +226,7 @@ function isJulius(t){return t.who==="julius"||t.who==="both"||t.who==="familie"|
 function getScore(day,blk,idx,isF,isL){
   var school=!isNS(day);
   var inF=!!blk.ferien;
-  function parseH(note){if(!note||note.indexOf(">")<0)return -1;var a=note.split(">")[1].trim();var m=a.match(/(\d{1,2}):(\d{2})/);return m?parseInt(m[1]):-1;}
+  function parseH(note){if(!note||note.indexOf("→")<0)return -1;var a=note.split("→")[1].trim();var m=a.match(/(\d{1,2}):(\d{2})/);return m?parseInt(m[1]):-1;}
   if(isL&&idx<blocks.length-1){
     var nx=blocks[idx+1];var h=parseH(blk.note);
     if(school&&!inF&&h<0)return nx.wer==="sebastian"?{s:1,i:0}:{s:0,i:1};
@@ -294,7 +294,7 @@ function render(){
         var key2=d2s(cur2.getFullYear(),cur2.getMonth()+1,cur2.getDate());
         var vonKey=d2s(b.von[0],b.von[1],b.von[2]),bisKey=d2s(b.bis[0],b.bis[1],b.bis[2]);
         var sc=getScore(cur2,b,blkIdx,key2===vonKey,key2===bisKey);
-        ts+=sc.s;
+        ts+= b.wer==="sebastian" ? sc.s : sc.i;
         if(key2===bisKey)break;
         cur2=new Date(cur2.getFullYear(),cur2.getMonth(),cur2.getDate()+1);
       }
