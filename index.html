@@ -295,6 +295,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
     </div>
   </div>
   <!-- Row 3: Changelog -->
+  <div class="changelog" id="topbar-changelog"></div>
 
   <!-- Row 4: Current banner -->
   <div id="current-banner" style="display:none"></div>
@@ -320,7 +321,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var
 
 <script>
 const changelog=[
-  {date:'20.03.2026',text:'11 Familiengeburtstage eingetragen (Sebastian, Thomas, Mathias, Franz-Georg, Isabel, Atlas, Livia, Daniel, Dilek, Jonna, Laura)'},
+  {date:'08.04.2026',text:'06.06. 14:00 → 07.06. 18:00 Kinder bei Sebastian (Wochenende)'},
+  {date:'08.04.2026',text:'18.07. 12:00 Kinder zu Sebastian (statt 17.07.)'},
+  {date:'08.04.2026',text:'14.07. 18:00 Kinder zu Isabel statt 15.07. Schule'},
+  {date:'08.04.2026',text:'22.06. Notiz: Kinder zu Opa Wilm? (Isabel fragt nach)'},
+  {date:'08.04.2026',text:'Elternsprechtag GSG 07.05.: 5 Lehrergespräche eingetragen'},
+  {date:'08.04.2026',text:'04.05. 18:00 Kinder zu Isabel: Blöcke angepasst'},
+  {date:'08.04.2026',text:'18.05. 18:00 Kinder zu Isabel: Blöcke angepasst'},
+  {date:'20.03.2026',text:'Jekits Konzert Rosalie 22.04. 16:00 (Turnhalle Grundschule)'},
+  {date:'20.03.2026',text:'Erster Schultag nach Osterferien korrigiert: 13.04. (Mo) statt 14.04.'},
   {date:'20.03.2026',text:'Isabel 11.01. 10:00 → 16.01. eingetragen'},
   {date:'20.03.2026',text:'Radfahrwoche Rosalie Mo 23.03. und Di 24.03. 08:00 eingetragen'},
   {date:'20.03.2026',text:'Block 24.03. 18:00: Kinder zurück zu Isabel (statt 25.03.)'},
@@ -381,21 +390,21 @@ const blocks=[
   {von:[2026,4,15],bis:[2026,4,17],wer:'isabel',note:'Mi 08:00 → Fr 13:00',ferien:'oster'},
   {von:[2026,4,17],bis:[2026,4,18],wer:'sebastian',note:'Fr 13:00 → Sa 18:00',ferien:'oster'},
   {von:[2026,4,18],bis:[2026,5,1],wer:'isabel',note:'Sa 18:00 → Fr 13:00',ferien:null},
-  {von:[2026,5,1],bis:[2026,5,6],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,5,6],bis:[2026,5,15],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
-  {von:[2026,5,15],bis:[2026,5,20],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,5,20],bis:[2026,5,29],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:'pfingst'},
+  {von:[2026,5,1],bis:[2026,5,4],wer:'sebastian',note:'Fr 13:00 → Mo 18:00',ferien:null},
+  {von:[2026,5,4],bis:[2026,5,15],wer:'isabel',note:'Mo 18:00 → Fr 08:00',ferien:null},
+  {von:[2026,5,15],bis:[2026,5,18],wer:'sebastian',note:'Fr 13:00 → Mo 18:00',ferien:null},
+  {von:[2026,5,18],bis:[2026,5,29],wer:'isabel',note:'Mo 18:00 → Fr 08:00',ferien:'pfingst'},
   {von:[2026,5,29],bis:[2026,6,3],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,6,3],bis:[2026,6,12],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
+  {von:[2026,6,3],bis:[2026,6,6],wer:'isabel',note:'Mi 13:30 → Sa 14:00',ferien:null},
+  {von:[2026,6,6],bis:[2026,6,7],wer:'sebastian',note:'Sa 14:00 → So 18:00',ferien:null},
+  {von:[2026,6,7],bis:[2026,6,12],wer:'isabel',note:'So 18:00 → Fr 08:00',ferien:null},
   {von:[2026,6,12],bis:[2026,6,17],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
   {von:[2026,6,17],bis:[2026,6,20],wer:'isabel',note:'Mi 13:30 → Sa 18:00',ferien:null},
   {von:[2026,6,20],bis:[2026,6,22],wer:'sebastian',note:'Sa 18:00 → Mo 18:00',ferien:null},
-  {von:[2026,6,22],bis:[2026,6,26],wer:'isabel',note:'Mo 18:00 → Fr 08:00',ferien:null},
-  {von:[2026,6,26],bis:[2026,7,1],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,7,1],bis:[2026,7,10],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
-  {von:[2026,7,10],bis:[2026,7,15],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
-  {von:[2026,7,15],bis:[2026,7,17],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
-  {von:[2026,7,17],bis:[2026,8,8],wer:'sebastian',note:'Fr 13:30 → Sa 18:00',ferien:'sommer'},
+  {von:[2026,6,22],bis:[2026,7,10],wer:'isabel',note:'Mo 18:00 → Fr 08:00',ferien:null},
+  {von:[2026,7,10],bis:[2026,7,14],wer:'sebastian',note:'Fr 13:00 → Di 18:00',ferien:null},
+  {von:[2026,7,14],bis:[2026,7,18],wer:'isabel',note:'Di 18:00 → Sa 12:00',ferien:null},
+  {von:[2026,7,18],bis:[2026,8,8],wer:'sebastian',note:'Sa 12:00 → Sa 18:00',ferien:'sommer'},
   {von:[2026,8,8],bis:[2026,9,4],wer:'isabel',note:'Sa 18:00 → Fr 13:00',ferien:'sommer'},
   {von:[2026,9,4],bis:[2026,9,9],wer:'sebastian',note:'Fr 13:00 → Mi 08:00',ferien:null},
   {von:[2026,9,9],bis:[2026,9,18],wer:'isabel',note:'Mi 13:30 → Fr 08:00',ferien:null},
@@ -423,11 +432,14 @@ const TR=[
   {date:[2026,4,10],time:null,title:'Efteling mit der Familie',who:'familie',type:'single',schoolOf:null},
   {date:[2026,5,30],time:'14:00',title:'Julius Geburtstag feiern bei Oma (Ostbüren)',who:'familie',type:'single',schoolOf:null},
   {date:[2026,4,15],time:'18:00',title:'Elternstammtisch (China City)',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,4,22],time:'16:00',title:'Jekits Konzert (Turnhalle Grundschule)',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {date:[2026,4,18],time:'14:00',title:'Kinder zu Isabel',who:'both',type:'single',schoolOf:null},
   {date:[2026,4,29],time:'09:00',title:'Hr. Dehrenbach',who:'julius',type:'single',schoolOf:null},
   {date:[2026,4,7],time:'14:45',title:'Kieferorthopäde',who:'julius',type:'single',schoolOf:null},
+  {date:[2026,6,1],time:'14:45',title:'Kieferorthopäde',who:'julius',type:'single',schoolOf:null},
   {recurring:{dow:2,until:[2026,12,31]},time:'16:00',title:'Tennis Julius',who:'julius',type:'recurring',schoolOf:null},
   {date:[2026,6,15],time:null,title:'Maxipark',who:'rosalie',type:'single',schoolOf:'rosalie'},
+  {date:[2026,6,22],time:null,title:'Kinder zu Opa Wilm? (Isabel fragt nach)',who:'both',type:'comment',schoolOf:null},
   {date:[2026,6,25],time:null,title:'Bundesjugendspiele',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {date:[2026,7,2],time:null,title:'Klassenfest & Radfahrtraining',who:'rosalie',type:'single',schoolOf:'rosalie'},
   {dateRange:[[2026,3,9],[2026,3,14]],title:'Zirkuswoche',who:'rosalie',type:'single',schoolOf:'rosalie'},
@@ -444,8 +456,8 @@ const TR=[
   {date:[2026,7,17],time:null,title:'Letzter Schultag / Zeugnisausgabe',who:'julius',type:'single',schoolOf:'julius'},
   // Beide Kinder
   {date:[2026,3,27],time:null,title:'⛔ Letzter Schultag vor Osterferien',who:'both',type:'single',schoolOf:'both'},
-  {date:[2026,4,14],time:null,title:'✅ Erster Schultag nach Osterferien',who:'both',type:'single',schoolOf:'both'},
-  {date:[2026,4,14],time:null,title:'Sebastian bringt zur Schule, Isabel holt ab',who:'both',type:'comment',schoolOf:null},
+  {date:[2026,4,13],time:null,title:'✅ Erster Schultag nach Osterferien',who:'both',type:'single',schoolOf:'both'},
+  {date:[2026,4,13],time:null,title:'Sebastian bringt zur Schule, Isabel holt ab',who:'both',type:'comment',schoolOf:null},
   {date:[2026,5,22],time:null,title:'⛔ Letzter Schultag vor Pfingsten',who:'both',type:'single',schoolOf:'both'},
   {date:[2026,5,27],time:null,title:'✅ Erster Schultag nach Pfingsten',who:'both',type:'single',schoolOf:'both'},
   {date:[2026,7,16],time:null,title:'📋 Zeugnisausgabe Rosalie',who:'rosalie',type:'single',schoolOf:'rosalie'},
@@ -479,6 +491,7 @@ const TR=[
   {date:[2026,10,3],time:null,title:'🎂 Sebastian Reinemann',who:'geburtstag',type:'single',schoolOf:null},
   {date:[2026,10,10],time:null,title:'🎂 Dilek Reinemann',who:'geburtstag',type:'single',schoolOf:null},
   {date:[2026,10,12],time:null,title:'🎂 Jonna Reinemann',who:'geburtstag',type:'single',schoolOf:null},
+  {date:[2026,11,2],time:'14:30',title:'Zahnarzt (Julius & Rosalie)',who:'both',type:'single',schoolOf:null},
   {date:[2026,11,3],time:null,title:'🎂 Thomas Reinemann',who:'geburtstag',type:'single',schoolOf:null},
   {date:[2026,11,18],time:null,title:'🎂 Isabel Reinemann',who:'geburtstag',type:'single',schoolOf:null},
   {date:[2026,12,15],time:null,title:'🎂 Mathias Reinemann',who:'geburtstag',type:'single',schoolOf:null},
@@ -487,6 +500,11 @@ const TR=[
   {date:[2026,4,20],time:'19:00',title:'Elternabend Julius',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,2,17],time:null,title:'Kein Unterricht — Distanzlernen (Kinder zu Hause)',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,5,7],time:'14:00',title:'2. Elternsprechtag Julius (14:00–19:00)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'15:20',title:'Sprechtag: WENZEL Svenja — Englisch (Raum 113)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'15:30',title:'Sprechtag: BAUER Arno — Deutsch/GE (Raum 105)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'15:50',title:'Sprechtag: TRENDELKAMP Tim — Mathe (Raum 157)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'16:10',title:'Sprechtag: HOHAUS Christian — PH (Raum 137)',who:'julius',type:'single',schoolOf:'julius'},
+  {date:[2026,5,7],time:'16:30',title:'Sprechtag: LEHMANN-SCHWERING Henrike — WIPO (Raum 112)',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,5,14],time:null,title:'Christi Himmelfahrt — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,5,15],time:null,title:'Beweglicher Ferientag — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
   {date:[2026,6,4],time:null,title:'Fronleichnam — schulfrei',who:'julius',type:'single',schoolOf:'julius'},
@@ -545,7 +563,20 @@ function mkPersonBox(name,person,rC,sC,schC,famC){
   return box;
 }
 
-function renderChangelog(){ /* moved to Historie tab */ }
+function renderChangelog(){
+  const body=document.getElementById('topbar-changelog');
+  if(!body)return;
+  if(!changelog||!changelog.length){body.innerHTML='<div class="changelog-empty">Keine Änderungen eingetragen.</div>';return;}
+  const title=document.createElement('div');title.className='changelog-title';title.textContent='🕐 Letzte Änderungen';
+  const list=document.createElement('div');list.className='changelog-list';
+  changelog.slice(0,5).forEach(c=>{
+    const i=document.createElement('div');i.className='changelog-item';
+    const d=document.createElement('div');d.className='changelog-date';d.textContent=c.date;
+    const t=document.createElement('div');t.className='changelog-text';t.textContent=c.text;
+    i.appendChild(d);i.appendChild(t);list.appendChild(i);
+  });
+  body.innerHTML='';body.appendChild(title);body.appendChild(list);
+}
 
 function renderHistorie(){
   const con=document.getElementById('analyse-view-historie');
